@@ -21,7 +21,8 @@ var jsPaths = [
     "app/bower_components/angular-velocity-revival/angular-velocity.js",
     "app/bower_components/angular/angular.js",
     "app/registerComponent.js",
-    "app/angular-app/**/*.js"
+    "app/app.es6",
+    "app/angular-app/**/*.es6"
 ];
 
 gulp.task('sass', function() {
@@ -45,13 +46,12 @@ gulp.task("js", function () {
         .pipe(gulp.dest(distPath));
 });
 
-gulp.task("html", function() {
-    return gulp.src("app/*.html")
-        .pipe(gulp.dest(distPath));
-});
+// gulp.task("html", function() {
+//     return gulp.src("app/*.html")
+//         .pipe(gulp.dest(distPath));
+// });
 
-gulp.task('default', ['sass', 'js', 'html'], function() {
+gulp.task('default', ['sass', 'js'], function() {
     gulp.watch(['app/scss/**/*.scss'], ['sass']);
-    gulp.watch(['app/angular-app/**/*.js'], ['js']);
-    gulp.watch(['app/*.html'], ['html']);
+    gulp.watch(['app/**/*.js', 'app/**/*.es6'], ['js']);
 });
