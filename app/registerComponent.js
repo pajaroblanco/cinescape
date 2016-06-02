@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Created by Brandon on 5/25/2016.
  */
@@ -25,7 +23,7 @@ function registerComponent(appName) {
 
         if (!constructorFn.prototype.compile) {
             // create an empty compile function if none was defined.
-            constructorFn.prototype.compile = function () {};
+            constructorFn.prototype.compile = () => {};
         }
 
         var originalCompileFn = _cloneFunction(constructorFn.prototype.compile);
@@ -112,13 +110,9 @@ function registerComponent(appName) {
         var factoryArray = args.slice(); // create a copy of the array
         // The factoryArray uses Angular's array notation whereby each element of the array is the name of a
         // dependency, and the final item is the factory function itself.
-        factoryArray.push(function () {
-            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                args[_key] = arguments[_key];
-            }
-
+        factoryArray.push((...args) => {
             //return new constructorFn(...args);
-            var instance = new (Function.prototype.bind.apply(constructorFn, [null].concat(args)))();
+            var instance = new constructorFn(...args);
             for (var key in instance) {
                 instance[key] = instance[key];
             }
@@ -134,7 +128,7 @@ function registerComponent(appName) {
      * @returns {Function}
      */
     function _cloneFunction(original) {
-        return function () {
+        return function() {
             return original.apply(this, arguments);
         };
     }
@@ -146,30 +140,7 @@ function registerComponent(appName) {
      * @param callback
      */
     function _override(object, methodName, callback) {
-        object[methodName] = callback(object[methodName]);
+        object[methodName] = callback(object[methodName])
     }
+
 }
-'use strict';
-
-// Declare app level module which depends on views, and components
-angular.module('myApp', ['ngRoute', 'myApp.view1', 'myApp.view2', 'myApp.version']).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({ redirectTo: '/view1' });
-}]);
-'use strict';
-
-angular.module('myApp.view1', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
-}]).controller('View1Ctrl', [function () {}]);
-'use strict';
-
-angular.module('myApp.view2', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
-  });
-}]).controller('View2Ctrl', [function () {}]);

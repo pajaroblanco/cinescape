@@ -3,7 +3,7 @@ var babel = require("gulp-babel");
 var concat = require("gulp-concat");
 
 gulp.task("js.es6", function () {
-    return gulp.src(["app/**/*.js", '!app/bower_components/**/*.js'])
+    return gulp.src(["app/registerComponent.js", "app/**/*.js", '!app/bower_components/**/*.js'])
         //.pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(concat("all.js"))
