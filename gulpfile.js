@@ -3,6 +3,8 @@ var babel = require("gulp-babel");
 var concat = require("gulp-concat");
 var $    = require('gulp-load-plugins')();
 
+var distPath = 'app/dist';
+
 var sassPaths = [
     'app/bower_components/foundation-sites/scss',
     'app/bower_components/motion-ui/src',
@@ -31,7 +33,7 @@ gulp.task('sass', function() {
         .pipe($.autoprefixer({
             browsers: ['last 2 versions', 'ie >= 9']
         }))
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest(distPath));
 });
 
 gulp.task("js", function () {
@@ -40,12 +42,12 @@ gulp.task("js", function () {
         .pipe(babel())
         .pipe(concat("app.js"))
         //.pipe(sourcemaps.write("."))
-        .pipe(gulp.dest("dist/js"));
+        .pipe(gulp.dest(distPath));
 });
 
 gulp.task("html", function() {
     return gulp.src("app/*.html")
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest(distPath));
 });
 
 gulp.task('default', ['sass', 'js', 'html'], function() {
