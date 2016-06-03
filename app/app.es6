@@ -3,6 +3,7 @@
 var angularApp = angular.module('app', [
     'ngRoute',
     'app.controllers',
+    'app.directives',
     'angular-velocity',
     'ngAnimate'
 ]);

@@ -1,0 +1,14 @@
+form.app-form {
+
+  small.form-error, span.form-error {
+    display: none;
+  }
+
+  .error small.form-error, .error span.form-error {
+    display: block;
+  }
+
+  .error label small {
+    font-size: 70%;
+  }
+}

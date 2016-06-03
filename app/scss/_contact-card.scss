@@ -1,6 +1,10 @@
 .contact-card {
   //width: 324px;
-  height: 495px;
+  height: 365px;
+  max-width: 370px;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
   //margin: 50px auto;
   border-radius: 30px;
   background-color: #f6fcfe;
@@ -21,8 +25,8 @@
     border-top-right-radius: 30px;
     transition: .5s ease-in-out;
 
-    @include breakpoint(small only) {
-      height: 42%;
+    @include breakpoint(small up) {
+      height: 70%;
     }
 
     span {
@@ -40,6 +44,7 @@
         position: absolute;
         bottom: 10px;
         margin-top: 0;
+        font-size: 14px;
       }
     }
   }
@@ -54,36 +59,48 @@
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     transition: .5s ease-in-out;
+    padding-top: 1.5rem;
 
-    @include breakpoint(small only) {
-      height: 58%;
+    @include breakpoint(small up) {
+      height: 30%;
     }
 
-    @include breakpoint(medium up) {
+    @include breakpoint(small up) {
       div.columns:first-of-type {
-        padding-left: 4rem;
+        //padding-left: 4rem;
       }
 
       div.columns:last-of-type {
-        padding-right: 4rem;
+        //padding-right: 4rem;
       }
     }
 
     span {
-      display:block;
+      //display:block;
 
-      &:first-of-type {
-        color: #68818c;
-        margin-bottom: 5px;
-        margin-top: 21px;
-        font-size: 42px;
+      color: #334750;
+      font-weight: 700;
+      margin-top: 0;
+
+      i.fa {
+        position: absolute;
+        left: 10px;
+        margin-top: 6px;
+        color: #453875;
       }
 
-      &:last-of-type {
-        color: #334750;
-        font-weight: 700;
-        margin-top: 0;
-      }
+      //&:first-of-type {
+      //  color: #68818c;
+      //  margin-bottom: 5px;
+      //  margin-top: 21px;
+      //  font-size: 42px;
+      //}
+      //
+      //&:last-of-type {
+      //  color: #334750;
+      //  font-weight: 700;
+      //  margin-top: 0;
+      //}
     }
   }
 }
