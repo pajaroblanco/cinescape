@@ -18,7 +18,23 @@ angularApp.config(['$locationProvider', '$routeProvider', function ($locationPro
             controllerAs: 'vm',
             label: 'Home'
         }).
+        when('/about', {
+            templateUrl: 'angular-app/about-us/about-us.html',
+            controller: 'AboutCtrl',
+            controllerAs: 'vm',
+            label: 'About Us'
+        }).
+        when('/contact', {
+            templateUrl: 'angular-app/contact-us/contact-us.html',
+            controller: 'ContactCtrl',
+            controllerAs: 'vm',
+            label: 'Contact Us'
+        }).
         otherwise({redirectTo: '/'});
+}]);
+
+angularApp.run([function() {
+    $(document).foundation();
 }]);
 
 /**

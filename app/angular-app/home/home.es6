@@ -19,7 +19,7 @@ class HomeController {
     }
 
     init() {
-        this.$rootScope.appData.smallScreenHeader = 'Admin Console';
+        this.$rootScope.appData.smallScreenHeader = 'Cinescape';
     }
 }
 

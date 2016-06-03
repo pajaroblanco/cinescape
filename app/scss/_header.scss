@@ -1,0 +1,45 @@
+header {
+  background-color: rgba(0, 0, 0, 1.0);
+  padding-top: .5rem;
+  position: relative;
+  z-index: 2;
+
+  @include breakpoint(small only) {
+    height: auto;
+  }
+
+  a.logo {
+    i {
+      background-image: url('http://cinescape.us/wp-content/uploads/2016/05/Logo6.png');
+      background-position: 50% 50%;
+      height: 82px;
+      max-width: 90vw;
+      display: inline-block;
+      background-size: 100%;
+      width: 325px;
+      background-repeat: no-repeat;
+    }
+  }
+
+  ul.menu {
+    border-top: solid 1px white;
+
+    li {
+      a {
+        line-height: .5;
+        color:white;
+        margin-bottom: .75rem;
+        margin-top: .75rem;
+
+        font-size: 11px;
+        //font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        &.active {
+          border-bottom: solid 1px $active-navigation-link-color;
+        }
+      }
+    }
+  }
+}

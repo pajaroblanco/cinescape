@@ -1,4 +1,148 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic);
 @import "settings";
+@import "../bower_components/font-awesome/scss/font-awesome";
 @import "../bower_components/foundation-sites/scss/foundation";
 
 @include foundation-everything(true);
+
+@import "offcanvas";
+@import "header";
+@import "contact-card";
+
+$gray-text-color: #444444;
+
+.row.full-width {
+  max-width: 100%;
+}
+
+.row.content {
+  margin-top: 2rem;
+}
+
+h1 + hr {
+  margin-top:0;
+}
+
+.caption {
+  color: $gray-text-color;
+  font-size: 14px;
+  text-transform: uppercase;
+  clear: both;
+  font-weight: 400;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  display: block;
+  line-height: 1;
+  margin-top: 5px;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+@mixin hero($height) {
+  background-size: cover;
+  width: 100%;
+  max-width: 100%;
+  height: $height;
+  margin-left: 0;
+  margin-right: 0;
+
+  &.absolute {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.home-hero {
+  background: url('http://www.syringarealty.com/briefcase/102641_8272012104937AM80594.jpg') no-repeat center center;
+  @include hero(689px);
+
+  .hero-bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    //z-index: 99;
+
+    /* Pull the background 70px higher to the same place as #bg's */
+    background-color: rgba(0, 0, 0, 0.71);
+    //filter: blur(6px);
+  }
+
+  .hero-text {
+    position: relative;
+
+    h1, h2, h3, h4, h5, p {
+      color: white;
+      position: relative;
+    }
+
+    ul {
+      position: relative;
+
+      li {
+        color: white;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      position: relative;
+    }
+  }
+}
+
+.about-hero {
+  background: url('http://cinescape.us/wp-content/uploads/2016/04/drone_blurred_small.jpg') no-repeat center center;
+  @include hero(625px);
+
+  .hero-text {
+    padding-right: 2rem;
+
+    h1, h2, h3, h4, h5, p {
+      color: white;
+    }
+  }
+}
+
+.philosophy {
+  min-height: 535px;
+
+  div.columns:first-of-type {
+    //padding-left: 5rem;
+    //padding-right: 5rem;
+
+    @include breakpoint(small only) {
+      padding: 5rem;
+    }
+    @include breakpoint(large up) {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+
+  .philosophy-hero {
+    min-height: inherit;
+    background: url('http://themes.themegoods2.com/photome/demo/wp-content/uploads/2013/07/slide-01-big.jpg') no-repeat center center;
+  }
+}
+
+.happy-customers {
+  .amount {
+    font-size: 60px;
+  }
+}
+
+.our-team {
+  background-color: #f9f9f9;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  .row {
+    margin-bottom: 2rem;
+  }
+}

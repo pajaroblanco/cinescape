@@ -1,3 +1,6 @@
+$active-navigation-link-color: orange;
+$fa-font-path:   "../bower_components/font-awesome/fonts";
+
 //  Foundation for Sites Settings
 //  -----------------------------
 //
@@ -46,7 +49,7 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1200);
+$global-width: rem-calc(1024);
 $global-lineheight: 1.5;
 $foundation-palette: (
         primary: #2199e8,
@@ -62,7 +65,7 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: Lato, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -102,8 +105,8 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
+$header-font-family: Oswald, 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; //$body-font-family;
+$header-font-weight: 300; //$global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
@@ -404,7 +407,7 @@ $offcanvas-transition-timing: ease;
 $offcanvas-fixed-reveal: true;
 $offcanvas-exit-background: rgba($white, 0.25);
 $maincontent-class: 'off-canvas-content';
-$maincontent-shadow: 0 0 10px rgba($black, 0.5);
+$maincontent-shadow: none;// 0 0 10px rgba($black, 0.5);
 
 // 25. Orbit
 // ---------

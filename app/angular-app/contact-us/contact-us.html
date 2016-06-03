@@ -1,0 +1,27 @@
+<div class="row content">
+    <div class="small-12 columns">
+
+        <h1>Contacts</h1>
+        <hr>
+
+        <div class="contact-card" ng-repeat="contact in vm.contacts track by $index">
+            <div class="contact-top text-center">
+                <span ng-bind="contact.name"></span>
+                <span ng-bind="contact.title"></span>
+            </div>
+            <div class="contact-down">
+                <div class="row medium-collapse">
+                    <div class="medium-6 small-12 columns text-center">
+                        <span><i class="fa fa-phone-square"></i></span>
+                        <span ng-bind="contact.phone"></span>
+                    </div>
+                    <div class="medium-6 small-12 columns text-center">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <span ng-bind="contact.email"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
