@@ -39,13 +39,16 @@ angular.module('app.directives')
                     };
 
                     var showErrors = function() {
-                        var errorDivs = element.find('div.error');
-                        errorDivs.removeClass('error');
+                        var errorEls = element.find('input.is-invalid-input,label.is-invalid-label,span.form-error');
+                        errorEls.removeClass('is-invalid-input').removeClass('is-invalid-label').removeClass('is-visible');
 
                         var invalidFields = getInvalidElements();
                         _.forEach(invalidFields, function (field) {
                             var parentDiv = $(field).parents('div:first');
-                            parentDiv.addClass('error');
+                            //parentDiv.addClass('error');
+                            parentDiv.find('label').addClass('is-invalid-label');
+                            parentDiv.find('input').addClass('is-invalid-input');
+                            parentDiv.find('span.form-error').addClass('is-visible');
                         });
                     };
 

@@ -1,0 +1,39 @@
+.home-hero {
+  background: url('http://www.syringarealty.com/briefcase/102641_8272012104937AM80594.jpg') no-repeat center center;
+  @include hero(689px);
+
+  .hero-bg {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    //z-index: 99;
+
+    /* Pull the background 70px higher to the same place as #bg's */
+    background-color: rgba(0, 0, 0, 0.71);
+    //filter: blur(6px);
+  }
+
+  .hero-text {
+    position: relative;
+
+    h1, h2, h3, h4, h5, p {
+      color: white;
+      position: relative;
+    }
+
+    ul {
+      position: relative;
+
+      li {
+        color: white;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      position: relative;
+    }
+  }
+}

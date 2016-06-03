@@ -8,53 +8,42 @@ class ContactUsController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', ContactUsController];
+        return ['$http', '$rootScope', '$timeout', 'swal', ContactUsController];
     }
 
-    constructor($http, $rootScope, $timeout) {
+    constructor($http, $rootScope, $timeout, swal) {
         this.$http = $http;
         this.$rootScope = $rootScope;
+        this.swal = swal;
 
-        let contacts = [
-            {
-                photoUrl: '',
-                name: 'Jeremy Ayers',
-                title: 'Pilot',
-                phone: '818-732-0006',
-                email: 'jeremy@cinescape.us'
-            },
-            {
-                photoUrl: '',
-                name: 'Sam Low',
-                title: 'Cinematographer',
-                phone: '818-732-0006',
-                email: 'sam@cinescape.us'
-            },
-            {
-                photoUrl: '',
-                name: 'Darren Beasley',
-                title: 'Cinematographer / Photographer',
-                phone: '818-732-0006',
-                email: 'darren@cinescape.us'
-            },
-            {
-                photoUrl: '',
-                name: 'Brandon Ayers',
-                title: 'Cinematographer / Photographer',
-                phone: '818-732-0006',
-                email: 'brandon@cinescape.us'
-            }
-        ];
-
-        $timeout(() => {
-            this.contacts = contacts;
-        }, 600);
+        this.contact = this.getEmptyContact();
+        this.isSubmitting = false;
 
         this.init();
     }
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'Contact Us';
+    }
+
+    getEmptyContact() {
+        return {
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+        };
+    }
+
+    onSubmit(contactForm) {
+        if (contactForm.$valid) {
+            this.isSubmitting = true;
+            this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
+            this.contact = this.getEmptyContact();
+            this.contactForm.$setPristine(true);
+            this.isSubmitting = false;
+        }
     }
 }
 

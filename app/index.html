@@ -17,60 +17,83 @@
     <link rel="stylesheet" href="dist/app.css">
 </head>
 <body ng-controller="BaseCtrl as base">
-    <div class="off-canvas-wrapper">
-        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    <div id="wrap">
+        <div id="main">
+            <div class="off-canvas-wrapper">
+                <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-            <!-- off-canvas title bar for 'small' screen -->
-            <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
-                <div class="title-bar-right">
-                    <span class="title-bar-title"></span>
-                    <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
-                </div>
-            </div>
-
-            <!-- off-canvas right menu -->
-            <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
-                <ul class="vertical dropdown menu" data-dropdown-menu>
-                    <li><a href="right_item_1">Right item 1</a></li>
-                    <li><a href="right_item_2">Right item 2</a></li>
-                    <li><a href="right_item_3">Right item 3</a></li>
-                </ul>
-            </div>
-
-            <header>
-                <div class="row">
-                    <div class="column text-center">
-                        <a class="logo" href="#/">
-                            <i></i>
-                        </a>
+                    <!-- off-canvas title bar for 'small' screen -->
+                    <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+                        <div class="title-bar-right">
+                            <span class="title-bar-title"></span>
+                            <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="row show-for-medium">
-                    <div class="medium-12 columns">
-                        <ul class="menu align-center">
-                            <li><a href="#/" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'home'}">Home</a></li>
-                            <li><a href="#/view2">Portfolio</a></li>
-                            <li><a href="#/about" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'about'}">About Us</a></li>
-                            <li><a href="#/contact" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'contact'}">Contact Us</a></li>
+
+                    <!-- off-canvas right menu -->
+                    <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
+                        <ul class="vertical dropdown menu" data-dropdown-menu>
+                            <li><a href="right_item_1">Right item 1</a></li>
+                            <li><a href="right_item_2">Right item 2</a></li>
+                            <li><a href="right_item_3">Right item 3</a></li>
                         </ul>
                     </div>
+
+                    <header>
+                        <div class="row">
+                            <div class="column text-center">
+                                <a class="logo" href="#/">
+                                    <i></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row show-for-medium">
+                            <div class="medium-12 columns">
+                                <ul class="menu align-center">
+                                    <li>
+                                        <a href="#/" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'home'}">Home</a>
+                                    </li>
+                                    <li><a href="#/view2">Portfolio</a></li>
+                                    <li>
+                                        <a href="#/about" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'about'}">About
+                                            Us</a></li>
+                                    <li>
+                                        <a href="#/contact" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'contact'}">Contact
+                                            Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please
+                        <a href="http://browsehappy.com/">upgrade
+                            your browser</a> to improve your experience.</p>
+                    <![endif]-->
+
+                    <!-- original content goes in this container -->
+                    <div class="off-canvas-content" data-off-canvas-content>
+                        <div id="view" ng-view class="vvelocity-enter-transition-slideUpIn" data-velocity-opts="{ duration: 400, complete: base.afterViewEnter }"></div>
+                    </div>
+
+                    <!-- close wrapper, no more content after this -->
                 </div>
-            </header>
-
-            <!-- original content goes in this container -->
-            <div class="off-canvas-content" data-off-canvas-content>
-                <div id="view" ng-view class="velocity-enter-transition-slideUpIn" data-velocity-opts="{ duration: 400, complete: base.afterViewEnter }"></div>
             </div>
-
-            <!-- close wrapper, no more content after this -->
         </div>
     </div>
 
-    <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-        your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <footer id="footer">
+        <div class="row">
+            <div class="small-9 columns">
+                © 2016 Copyright Cinescape
+            </div>
+            <div class="columns text-right">
+                <button class="button secondary" ng-click="base.onScrollToTopClick()"><i class="fa-angle-up fa"></i></button>
+            </div>
+        </div>
+    </footer>
 
+    <script src="bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"></script>
     <script src="dist/dependencies.js"></script>
     <script src="dist/app.js"></script>
 </body>

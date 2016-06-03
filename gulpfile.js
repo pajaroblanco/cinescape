@@ -7,12 +7,13 @@ var distPath = 'app/dist';
 
 var sassPaths = [
     'app/bower_components/foundation-sites/scss',
-    'app/bower_components/motion-ui/src',
-    'app/scss/**/*.scss'
+    'app/bower_components/motion-ui/src'
+    //'app/scss/**/*.scss'
 ];
 
 var externalJsPaths = [
     "app/bower_components/jquery/dist/jquery.js",
+    "app/bower_components/lodash/dist/lodash.js",
 
     "app/bower_components/foundation-sites/js/foundation.core.js",
     "app/bower_components/foundation-sites/js/foundation.abide.js",
@@ -43,21 +44,24 @@ var externalJsPaths = [
     "app/bower_components/foundation-sites/js/foundation.util.touch.js",
     "app/bower_components/foundation-sites/js/foundation.util.triggers.js",
 
+    "app/bower_components/sweetalert/dist/sweetalert-dev.js",
     "app/bower_components/velocity/velocity.js",
     "app/bower_components/velocity/velocity.ui.js",
+    //"app/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js",
     "app/bower_components/angular/angular.js",
     "app/bower_components/angular-animate/angular-animate.js",
     "app/bower_components/angular-route/angular-route.js",
     "app/bower_components/angular-velocity-revival/angular-velocity.js",
     "app/bower_components/angular/angular.js",
     "app/registerComponent.js",
-    "app/app.es6",
-    "app/angular-app/**/*.es6"
+     "app/app.es6",
+     "app/angular-app/**/*.es6"
 ];
 
 var appJsPaths = [
     "app/app.es6",
-    "app/angular-app/**/*.es6"
+    "app/angular-app/**/*.es6",
+    "app/angular-app/**/*.js"
 ];
 
 gulp.task('sass', function() {

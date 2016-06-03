@@ -7,12 +7,13 @@ class BaseController {
     }
     
     static getDependencies() {
-        return ['$rootScope', '$scope', '$location', BaseController];
+        return ['$rootScope', '$scope', '$location', 'velocity', BaseController];
     }
 
-    constructor($rootScope, $scope, $location) {
+    constructor($rootScope, $scope, $location, velocity) {
         this.$rootScope = $rootScope;
         this.$location = $location;
+        this.velocity = velocity;
 
         this.$rootScope.appData = {
             smallScreenHeader: 'Cinescape',
@@ -44,6 +45,10 @@ class BaseController {
 
     afterViewEnter() {
         $('#view').attr('style', '');
+    }
+
+    onScrollToTopClick() {
+        this.velocity($('html'), 'scroll');
     }
 }
 

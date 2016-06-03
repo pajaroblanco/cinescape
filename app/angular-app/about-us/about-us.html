@@ -28,15 +28,37 @@
 </div>
 
 <div class="row align-middle align-center text-center full-width our-team">
-    <div class="small-12 medium-6 large-5 columns">
+    <div class="small-12 columns">
         <div class="row align-center">
             <div class="small-12 columns">
                 <h1>Our Team</h1>
                 <span class="caption">we are creative people</span>
             </div>
         </div>
+
+        <div class="row standard-width small-up-1 medium-up-2 large-up-4 contact-cards-container">
+            <div class="column" ng-repeat="contact in vm.contacts track by $index">
+                <div class="contact-card">
+                    <div class="contact-top text-center" style="background-image:url({{contact.photoUrl}})">
+                        <span ng-bind="contact.name"></span>
+                        <span ng-bind="contact.title"></span>
+                    </div>
+                    <div class="contact-down">
+                        <div class="row medium-collapse">
+                            <div class="medium-12 small-12 columns text-center">
+                                <span><i class="fa fa-phone-square"></i> <span ng-bind="contact.phone"></span></span>
+                            </div>
+                            <div class="medium-12 small-12 columns text-center">
+                                <span><i class="fa fa-envelope"></i> <a href="mailto:{{contact.email}}"><span ng-bind="contact.email"></span></a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row align-center">
-            <div class="small-12 columns">
+            <div class="small-12 medium-6 large-5 columns">
                 <p>
                     <strong>With over 25 years of combined Cinema and Television experience,
                         our staff strive to provide the highest quality aerial footage for our customers
@@ -45,7 +67,7 @@
             </div>
         </div>
         <div class="row align-center">
-            <div class="small-12 columns">
+            <div class="small-12 medium-6 large-5 columns">
                 <ul>
                     <li>We are Licensed Pilots with FAA 333 sUAV Exemptions</li>
                     <li>Fully Insured for Commercial Aerial Cinematography</li>

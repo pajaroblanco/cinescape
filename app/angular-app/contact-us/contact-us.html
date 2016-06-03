@@ -1,50 +1,59 @@
 <div class="row content">
     <div class="small-12 columns">
 
-        <h1>Contacts</h1>
-        <hr>
-
-        <div class="row small-up-1 medium-up-2 large-up-4">
-            <div class="column velocity-enter-transition-slideUpIn" data-velocity-opts="{ duration:500, stagger: 100 }" ng-repeat="contact in vm.contacts track by $index">
-                <div class="contact-card">
-                    <div class="contact-top text-center">
-                        <span ng-bind="contact.name"></span>
-                        <span ng-bind="contact.title"></span>
-                    </div>
-                    <div class="contact-down">
-                        <div class="row medium-collapse">
-                            <div class="medium-12 small-12 columns text-center">
-                                <span><i class="fa fa-phone-square"></i> <span ng-bind="contact.phone"></span></span>
-                            </div>
-                            <div class="medium-12 small-12 columns text-center">
-                                <span><i class="fa fa-envelope"></i> <span ng-bind="contact.email"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <h1>Contact Us</h1>
         <hr>
-        <form novalidate app-form name="vm.contactForm" ng-submit="onSubmit(vm.contactForm)">
+
+        <form novalidate app-form name="vm.contactForm" ng-submit="vm.onSubmit(vm.contactForm)">
             <div class="row">
-                <div class="medium-6 columns">
+                <div class="small-12 medium-4 columns">
                     <label>
                         Name <small>Required</small>
-                        <input type="text" required ng-model="vm.contactForm.name"/>
-                        <small class="form-error">This is a required field</small>
+                        <input type="text" required ng-model="vm.contact.name"/>
+                        <span class="form-error">Name is required</span>
                     </label>
                 </div>
-                <div class="medium-6 columns">
+                <div class="small-12 medium-4 columns">
                     <label>
-                        Name <small>Required</small>
-                        <input type="text" required ng-model="vm.contactForm.name"/>
-                        <small class="form-error">This is a required field</small>
+                        Email <small>Required</small>
+                        <input type="email" required ng-model="vm.contact.email"/>
+                        <span class="form-error">Please provide a valid email address</span>
+                    </label>
+                </div>
+                <div class="small-12 medium-4 columns">
+                    <label>
+                        Phone
+                        <input type="text" ng-pattern="/^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})[ .-]?(x[0-9]+)?$/" ng-model="vm.contact.phone"/>
+                        <span class="form-error">This is not a valid phone number</span>
                     </label>
                 </div>
             </div>
-            <button type="submit">Submit</button>
+
+            <div class="row">
+                <div class="small-12 medium-12 columns">
+                    <label>
+                        Subject <small>Required</small>
+                        <input type="text" required ng-model="vm.contact.subject"/>
+                        <span class="form-error">Subject is required</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-12 columns">
+                    <label>
+                        Message <small>Required</small>
+                        <textarea required ng-model="vm.contact.message"></textarea>
+                        <span class="form-error">Message is required</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns text-right">
+                    <button type="submit" class="button success" ng-disabled="vm.isSubmitting">Submit<span ng-show="vm.isSubmitting">ing...</span></button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
