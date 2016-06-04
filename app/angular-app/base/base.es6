@@ -39,6 +39,9 @@ class BaseController {
                 case '/contact':
                     this.$rootScope.appData.activeNavigationLink = 'contact';
                     break;
+                case '/portfolio':
+                    this.$rootScope.appData.activeNavigationLink = 'portfolio';
+                    break;
             }
         });
     }

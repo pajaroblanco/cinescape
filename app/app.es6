@@ -32,6 +32,12 @@ angularApp.config(['$locationProvider', '$routeProvider', function ($locationPro
             controllerAs: 'vm',
             label: 'Contact Us'
         }).
+        when('/portfolio', {
+            templateUrl: 'angular-app/portfolio/portfolio.html',
+            controller: 'PortfolioCtrl',
+            controllerAs: 'vm',
+            label: 'Portfolio'
+        }).
         otherwise({redirectTo: '/'});
 }]);
 

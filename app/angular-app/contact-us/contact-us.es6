@@ -8,13 +8,15 @@ class ContactUsController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'swal', ContactUsController];
+        return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', ContactUsController];
     }
 
-    constructor($http, $rootScope, $timeout, swal) {
+    constructor($http, $rootScope, $timeout, swal, velocity) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.swal = swal;
+        this.velocity = velocity;
+        this.$timeout = $timeout;
 
         this.contact = this.getEmptyContact();
         this.isSubmitting = false;
@@ -24,6 +26,11 @@ class ContactUsController {
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'Contact Us';
+
+        this.$timeout(() => {
+            let items = $('form');
+            this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
+        }, 0);
     }
 
     getEmptyContact() {

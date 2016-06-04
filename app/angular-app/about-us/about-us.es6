@@ -23,35 +23,31 @@ class AboutUsController {
                 photoUrl: 'dist/images/jeremy.jpg',
                 name: 'Jeremy Ayers',
                 title: 'Pilot (FAA Licensed)',
-                phone: '818-732-0006',
                 email: 'jeremy@cinescape.us'
             },
             {
                 photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
                 name: 'Sam Low',
                 title: 'Cinematographer',
-                phone: '818-732-0006',
                 email: 'sam@cinescape.us'
             },
             {
                 photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
                 name: 'Darren Beasley',
                 title: 'Cinematographer / Photographer',
-                phone: '818-732-0006',
                 email: 'darren@cinescape.us'
             },
             {
                 photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
                 name: 'Brandon Ayers',
                 title: 'Cinematographer / Photographer',
-                phone: '818-732-0006',
                 email: 'brandon@cinescape.us'
             }
         ];
 
-        $timeout(() => {
-            this.runStartAnimation = true;
-        }, 0);
+        // $timeout(() => {
+        //     this.runStartAnimation = true;
+        // }, 0);
 
         this.init();
     }
@@ -76,10 +72,10 @@ class AboutUsController {
             let getSectionScene = (triggerSelector) => {
                 return new this.ScrollMagic.Scene({triggerElement: triggerSelector})
                     .on("enter", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 750, stagger: 150 });
+                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
                     })
                     .on("leave", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity({opacity: 0}, { duration: 750, stagger: 150 });
+                        $(triggerSelector).find('h1,h1+p').velocity({opacity: 0}, { duration: 750, stagger: 200 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be
                     .triggerHook(.75);
