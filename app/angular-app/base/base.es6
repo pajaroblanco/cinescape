@@ -7,20 +7,27 @@ class BaseController {
     }
     
     static getDependencies() {
-        return ['$rootScope', '$scope', '$location', 'velocity', BaseController];
+        return ['$rootScope', '$scope', '$location', 'velocity', '_', BaseController];
     }
 
-    constructor($rootScope, $scope, $location, velocity) {
+    constructor($rootScope, $scope, $location, velocity, _) {
         this.$rootScope = $rootScope;
         this.$location = $location;
         this.velocity = velocity;
+        this._ = _;
 
         this.$rootScope.appData = {
             smallScreenHeader: 'Cinescape',
             activeNavigationLink: 'home'
         };
 
-        this.viewAnimationLength = 0;
+        this.navLinks = [
+            {label: 'Home', href: '#/', isActive: false},
+            {label: 'Portfolio', href: '#/portfolio', isActive: false},
+            {label: 'Pricing', href: '#/pricing', isActive: false},
+            {label: 'About Us', href: '#/about', isActive: false},
+            {label: 'Contact Us', href: '#/contact', isActive: false}
+        ];
 
         this.init($scope);
     }
@@ -31,19 +38,32 @@ class BaseController {
             let currentPath = this.$location.path();
             switch (currentPath) {
                 case '/':
-                    this.$rootScope.appData.activeNavigationLink = 'home';
+                    this.setLinksInactive();
+                    this._.find(this.navLinks, {label: 'Home'}).isActive = true;
                     break;
                 case '/about':
-                    this.$rootScope.appData.activeNavigationLink = 'about';
+                    this.setLinksInactive();
+                    this._.find(this.navLinks, {label: 'About Us'}).isActive = true;
                     break;
                 case '/contact':
-                    this.$rootScope.appData.activeNavigationLink = 'contact';
+                    this.setLinksInactive();
+                    this._.find(this.navLinks, {label: 'Contact Us'}).isActive = true;
                     break;
                 case '/portfolio':
-                    this.$rootScope.appData.activeNavigationLink = 'portfolio';
+                    this.setLinksInactive();
+                    this._.find(this.navLinks, {label: 'Portfolio'}).isActive = true;
+                    break;
+                case '/pricing':
+                    this.setLinksInactive();
+                    this._.find(this.navLinks, {label: 'Pricing'}).isActive = true;
                     break;
             }
         });
+    }
+
+    setLinksInactive() {
+        this._.forEach(this.navLinks, link => {link.isActive = false});
+        console.log(this.navLinks);
     }
 
     afterViewEnter() {

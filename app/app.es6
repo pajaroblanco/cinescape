@@ -38,6 +38,12 @@ angularApp.config(['$locationProvider', '$routeProvider', function ($locationPro
             controllerAs: 'vm',
             label: 'Portfolio'
         }).
+        when('/pricing', {
+            templateUrl: 'angular-app/pricing/pricing.html',
+            controller: 'PricingCtrl',
+            controllerAs: 'vm',
+            label: 'Pricing'
+        }).
         otherwise({redirectTo: '/'});
 }]);
 

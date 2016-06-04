@@ -50,16 +50,20 @@
                         <div class="row show-for-medium">
                             <div class="medium-12 columns">
                                 <ul class="menu align-center">
-                                    <li>
-                                        <a href="#/" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'home'}">Home</a>
+                                    <li ng-repeat="navLink in base.navLinks track by navLink.label">
+                                        <a ng-href="{{navLink.href}}" ng-class="{active: navLink.isActive}" ng-bind="navLink.label"></a>
                                     </li>
-                                    <li><a href="#/portfolio" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'portfolio'}">Portfolio</a></li>
-                                    <li>
-                                        <a href="#/about" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'about'}">About
-                                            Us</a></li>
-                                    <li>
-                                        <a href="#/contact" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'contact'}">Contact
-                                            Us</a></li>
+
+                                    <!--<li>-->
+                                        <!--<a href="#/" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'home'}">Home</a>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="#/portfolio" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'portfolio'}">Portfolio</a></li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#/about" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'about'}">About-->
+                                            <!--Us</a></li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#/contact" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'contact'}">Contact-->
+                                            <!--Us</a></li>-->
                                 </ul>
                             </div>
                         </div>
