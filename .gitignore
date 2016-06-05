@@ -6,4 +6,3 @@ tmp
 .DS_Store
 .idea
 *.iml
-app/dist/
