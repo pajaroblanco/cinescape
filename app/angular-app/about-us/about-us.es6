@@ -20,7 +20,7 @@ class AboutUsController {
 
         this.contacts = [
             {
-                photoUrl: 'dist/images/jeremy.jpg',
+                photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg', //'dist/images/jeremy.jpg',
                 name: 'Jeremy Ayers',
                 title: 'Pilot (FAA Licensed)',
                 email: 'jeremy@cinescape.us'

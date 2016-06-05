@@ -18,6 +18,10 @@
   .hero-text {
     position: relative;
 
+    @include breakpoint(small only) {
+      top: -5rem;
+    }
+
     h1, h2, h3, h4, h5, p {
       color: white;
       position: relative;
@@ -37,7 +41,14 @@
     }
   }
 
-  h1 + p {
-    font-size: 160%;
+  @include breakpoint(medium up) {
+    h1 + p {
+      font-size: 160%;
+    }
+  }
+
+  p > span {
+    color: #70B5E1;
+    font-size: 120%;
   }
 }

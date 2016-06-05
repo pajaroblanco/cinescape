@@ -7,10 +7,10 @@ class BaseController {
     }
     
     static getDependencies() {
-        return ['$rootScope', '$scope', '$location', 'velocity', '_', BaseController];
+        return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', BaseController];
     }
 
-    constructor($rootScope, $scope, $location, velocity, _) {
+    constructor($rootScope, $scope, $location, velocity, _, $sce) {
         this.$rootScope = $rootScope;
         this.$location = $location;
         this.velocity = velocity;
@@ -22,11 +22,11 @@ class BaseController {
         };
 
         this.navLinks = [
-            {label: 'Home', href: '#/', isActive: false},
-            {label: 'Portfolio', href: '#/portfolio', isActive: false},
-            {label: 'Pricing', href: '#/pricing', isActive: false},
-            {label: 'About Us', href: '#/about', isActive: false},
-            {label: 'Contact Us', href: '#/contact', isActive: false}
+            {label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false},
+            {label: 'Portfolio', smallLabel: $sce.trustAsHtml('<i class="fa fa-youtube-play"></i><span>Portfolio</span>'), href: '#/portfolio', isActive: false},
+            {label: 'Pricing', smallLabel: $sce.trustAsHtml('<i class="fa fa-dollar"></i><span>Pricing</span>'), href: '#/pricing', isActive: false},
+            {label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false},
+            {label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false}
         ];
 
         this.init($scope);
@@ -39,23 +39,23 @@ class BaseController {
             switch (currentPath) {
                 case '/':
                     this.setLinksInactive();
-                    this._.find(this.navLinks, {label: 'Home'}).isActive = true;
+                    this._.find(this.navLinks, {href: '#/'}).isActive = true;
                     break;
                 case '/about':
                     this.setLinksInactive();
-                    this._.find(this.navLinks, {label: 'About Us'}).isActive = true;
+                    this._.find(this.navLinks, {href: '#/about'}).isActive = true;
                     break;
                 case '/contact':
                     this.setLinksInactive();
-                    this._.find(this.navLinks, {label: 'Contact Us'}).isActive = true;
+                    this._.find(this.navLinks, {href: '#/contact'}).isActive = true;
                     break;
                 case '/portfolio':
                     this.setLinksInactive();
-                    this._.find(this.navLinks, {label: 'Portfolio'}).isActive = true;
+                    this._.find(this.navLinks, {href: '#/portfolio'}).isActive = true;
                     break;
                 case '/pricing':
                     this.setLinksInactive();
-                    this._.find(this.navLinks, {label: 'Pricing'}).isActive = true;
+                    this._.find(this.navLinks, {href: '#/pricing'}).isActive = true;
                     break;
             }
         });
@@ -63,7 +63,6 @@ class BaseController {
 
     setLinksInactive() {
         this._.forEach(this.navLinks, link => {link.isActive = false});
-        console.log(this.navLinks);
     }
 
     afterViewEnter() {
