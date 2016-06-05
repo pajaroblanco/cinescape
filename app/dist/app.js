@@ -333,6 +333,53 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
+var PortfolioController = function () {
+    _createClass(PortfolioController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'PortfolioCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', PortfolioController];
+        }
+    }]);
+
+    function PortfolioController($rootScope) {
+        _classCallCheck(this, PortfolioController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(PortfolioController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Portfolio';
+
+            // this.$timeout(() => {
+            //     let items = $('form');
+            //     this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
+            // }, 0);
+        }
+    }]);
+
+    return PortfolioController;
+}();
+
+registerComponent('app.controllers').controller(PortfolioController.getName(), PortfolioController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
 var HomeController = function () {
     _createClass(HomeController, null, [{
         key: 'getName',
@@ -375,53 +422,6 @@ var HomeController = function () {
 }();
 
 registerComponent('app.controllers').controller(HomeController.getName(), HomeController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
-var PortfolioController = function () {
-    _createClass(PortfolioController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'PortfolioCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', PortfolioController];
-        }
-    }]);
-
-    function PortfolioController($rootScope) {
-        _classCallCheck(this, PortfolioController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(PortfolioController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Portfolio';
-
-            // this.$timeout(() => {
-            //     let items = $('form');
-            //     this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
-            // }, 0);
-        }
-    }]);
-
-    return PortfolioController;
-}();
-
-registerComponent('app.controllers').controller(PortfolioController.getName(), PortfolioController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();

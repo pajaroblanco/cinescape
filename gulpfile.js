@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
 var concat = require("gulp-concat");
+var addsrc = require("gulp-add-src");
+var minify = require('gulp-minifier');
 var $    = require('gulp-load-plugins')();
 
 var distPath = 'app/dist';
@@ -47,7 +49,6 @@ var externalJsPaths = [
     "app/bower_components/sweetalert/dist/sweetalert-dev.js",
     "app/bower_components/velocity/velocity.js",
     "app/bower_components/velocity/velocity.ui.js",
-    //"app/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js",
     "app/bower_components/angular/angular.js",
     "app/bower_components/angular-animate/angular-animate.js",
     "app/bower_components/angular-route/angular-route.js",
@@ -56,6 +57,10 @@ var externalJsPaths = [
     "app/registerComponent.js",
      "app/app.es6",
      "app/angular-app/**/*.es6"
+];
+
+var externalJsPathsNoBabel = [
+    "app/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
 ];
 
 var appJsPaths = [
@@ -80,8 +85,16 @@ gulp.task("js.external", function () {
     return gulp.src(externalJsPaths)
         //.pipe(sourcemaps.init())
         .pipe(babel())
+        .pipe(addsrc(externalJsPathsNoBabel))
         .pipe(concat("dependencies.js"))
         //.pipe(sourcemaps.write("."))
+        .pipe(minify({
+            minify: true,
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            minifyJS: true,
+            minifyCSS: false
+        }))
         .pipe(gulp.dest(distPath));
 });
 
