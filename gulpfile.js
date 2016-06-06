@@ -112,7 +112,12 @@ gulp.task("js.internal", function () {
 //         .pipe(gulp.dest(distPath));
 // });
 
-gulp.task('default', ['sass', 'js.external', 'js.internal'], function() {
+gulp.task("fonts", function () {
+    return gulp.src('app/bower_components/font-awesome/fonts/**')
+        .pipe(gulp.dest(distPath + '/fonts'));
+});
+
+gulp.task('default', ['sass', 'js.external', 'js.internal', 'fonts'], function() {
     gulp.watch(['app/scss/**/*.scss'], ['sass']);
     gulp.watch(['app/**/*.js', 'app/**/*.es6'], ['js.internal']);
 });
