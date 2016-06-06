@@ -1,5 +1,6 @@
 .contact-cards-container {
   min-height: 413px;
+  margin-top: 4rem;
 
   @include breakpoint(small only) {
     padding-left: 3rem;

@@ -22,4 +22,11 @@
   form {
     opacity: 0;
   }
+
+  .button {
+    @include breakpoint(small only) {
+      width: 100%;
+    }
+    margin-bottom: 3rem;
+  }
 }
