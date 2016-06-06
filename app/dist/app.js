@@ -462,25 +462,25 @@ var PricingController = function () {
 
         this.pricingInfo = [{
             title: 'Standard Property',
-            price: '$1499',
-            description: 'An awesome description',
-            houseSize: '0 - 2000 sqft house',
-            lotSize: '0-8000 sqft lot',
-            included: 'Professionally edited aerial footage'
+            price: '$1499*',
+            description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
+            houseSize: '< 2000 sqft house',
+            lotSize: '< 8000 sqft lot',
+            included: 'Professionally edited footage'
         }, {
             title: 'Large Property',
-            price: '$2499',
-            description: 'An awesome description',
-            houseSize: '0 - 2000 sqft house',
-            lotSize: '0-8000 sqft lot',
-            included: 'Professionally edited aerial footage'
+            price: '$2499*',
+            description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
+            houseSize: '2001 - 3500 sqft house',
+            lotSize: '8001 - 16000 sqft lot',
+            included: 'Professionally edited footage'
         }, {
             title: 'Luxury Property',
-            price: '$4999',
-            description: 'An awesome description',
-            houseSize: '0 - 2000 sqft house',
-            lotSize: '0-8000 sqft lot',
-            included: 'Professionally edited aerial footage'
+            price: '$4999*',
+            description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
+            houseSize: '> 3500 sqft house',
+            lotSize: '> 16000 sqft lot',
+            included: 'Professionally edited footage'
         }];
 
         this.init();
