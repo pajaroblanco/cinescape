@@ -10,6 +10,10 @@
 
 .row.content {
   margin-top: 128px;
+
+  @include breakpoint(small only) {
+    margin-top: 32px;
+  }
 }
 
 h1 + hr {
