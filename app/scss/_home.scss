@@ -8,6 +8,10 @@
     width: 100%;
     height: inherit;
     top: 0;
+
+    @include breakpoint(small only) {
+      top: $topbar-height;
+    }
   }
 
   .hero-text {

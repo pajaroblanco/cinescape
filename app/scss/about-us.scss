@@ -9,7 +9,17 @@
     content: "";
     position: absolute;
     top: 0;
+
+    @include breakpoint(small only) {
+      top: $topbar-height;
+    }
   }
+
+  //&:before {
+  //  @include breakpoint(small only) {
+  //    top: $topbar-height;
+  //  }
+  //}
 
   .hero-text {
     padding-right: 2rem;
