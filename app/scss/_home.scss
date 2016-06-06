@@ -1,5 +1,5 @@
 .home-hero {
-  background: url('/dist/images/home.jpg') no-repeat center center;
+  background: url('../dist/images/home.jpg') no-repeat center center;
   @include hero(100vh);
 
   .hero-overlay {
