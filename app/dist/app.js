@@ -300,8 +300,8 @@ var ContactUsController = function () {
             this.$rootScope.appData.isLight = false;
 
             this.$timeout(function () {
-                var items = $('form');
-                _this.velocity(items, 'transition.slideUpIn', { duration: 500, delay: 50 });
+                var items = $('.callout, form');
+                _this.velocity(items, 'transition.slideUpIn', { duration: 500, stagger: 150 });
             }, 0);
         }
     }, {

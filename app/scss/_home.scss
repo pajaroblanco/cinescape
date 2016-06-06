@@ -1,5 +1,6 @@
 .home-hero {
   background: url('../dist/images/home.jpg') no-repeat center center;
+  //background: url('https://i.ytimg.com/vi/zzo4fF6MFYM/maxresdefault.jpg') no-repeat center center;
   @include hero(100vh);
 
   .hero-overlay {
@@ -75,5 +76,13 @@
 
   h3 {
     //margin-top: 3rem;
+  }
+}
+
+.call-to-action {
+  @include breakpoint (medium up) {
+    .button:first-of-type {
+      margin-right: 2rem;
+    }
   }
 }
