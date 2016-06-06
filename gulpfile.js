@@ -78,6 +78,13 @@ gulp.task('sass', function() {
         .pipe($.autoprefixer({
             browsers: ['last 2 versions', 'ie >= 9']
         }))
+        .pipe(minify({
+            minify: true,
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            minifyJS: false,
+            minifyCSS: true
+        }))
         .pipe(gulp.dest(distPath));
 });
 

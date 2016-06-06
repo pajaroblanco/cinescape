@@ -3,7 +3,7 @@
 @import "settings";
 @import "../bower_components/font-awesome/scss/font-awesome";
 @import "../bower_components/foundation-sites/scss/foundation";
-@import "../bower_components/sweetalert/dist/sweetalert.css";
+@import "../bower_components/sweetalert/dev/sweetalert";
 
 @include foundation-everything(true);
 
