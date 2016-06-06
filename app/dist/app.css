@@ -5991,9 +5991,6 @@ form.app-form textarea {
     height: inherit; }
   .home-hero .hero-text {
     position: relative; }
-    @media screen and (max-width: 39.9375em) {
-      .home-hero .hero-text {
-        top: -5rem; } }
     .home-hero .hero-text h1, .home-hero .hero-text h2, .home-hero .hero-text h3, .home-hero .hero-text h4, .home-hero .hero-text h5, .home-hero .hero-text p {
       color: white;
       position: relative; }
