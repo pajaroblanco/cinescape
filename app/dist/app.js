@@ -221,6 +221,8 @@ var BaseController = function () {
                         _this._.find(_this.navLinks, { href: '#/pricing' }).isActive = true;
                         break;
                 }
+
+                _this.scrollToTop(0);
             });
         }
     }, {
@@ -238,7 +240,12 @@ var BaseController = function () {
     }, {
         key: 'onScrollToTopClick',
         value: function onScrollToTopClick() {
-            this.velocity($('html'), 'scroll');
+            this.scrollToTop(350);
+        }
+    }, {
+        key: 'scrollToTop',
+        value: function scrollToTop(duration) {
+            this.velocity($('html'), 'scroll', { duration: duration });
         }
     }]);
 

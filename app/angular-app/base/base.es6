@@ -58,6 +58,8 @@ class BaseController {
                     this._.find(this.navLinks, {href: '#/pricing'}).isActive = true;
                     break;
             }
+
+            this.scrollToTop(0);
         });
     }
 
@@ -70,7 +72,11 @@ class BaseController {
     }
 
     onScrollToTopClick() {
-        this.velocity($('html'), 'scroll');
+        this.scrollToTop(350);
+    }
+
+    scrollToTop(duration) {
+        this.velocity($('html'), 'scroll', {duration: duration});
     }
 }
 
