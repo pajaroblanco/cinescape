@@ -25,8 +25,24 @@ html, body {height: 100%;}
   height: $footer-height;
   clear:both;
   border-top: 1px solid $medium-gray;
-  padding-top: 2rem;
-  box-shadow: 0px 0px 22px 0px #E3E3E3;
+  //padding-top: 2rem;
+  box-shadow: 0 0 22px 0 #E3E3E3;
+  background-color: #3A3A3A;
+  color: white;
+
+  .row:first-of-type {
+    height: 100%;
+
+    .columns {
+      @include breakpoint(small only) {
+        text-align: center;
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+  }
 }
 
 /*Opera Fix*/
