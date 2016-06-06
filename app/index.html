@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Cinescape</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="dist/app.css">
@@ -40,30 +40,17 @@
                     </div>
 
                     <header>
-                        <div class="row">
-                            <div class="column text-center">
+                        <div class="row full-width">
+                            <div class="column">
                                 <a class="logo" href="#/">
                                     <i></i>
                                 </a>
                             </div>
-                        </div>
-                        <div class="row show-for-medium">
-                            <div class="medium-12 columns">
-                                <ul class="menu align-center">
+                            <div class="column show-for-medium">
+                                <ul class="menu align-right" ng-class="{light: base.$rootScope.appData.isLight}">
                                     <li ng-repeat="navLink in base.navLinks track by navLink.label">
                                         <a ng-href="{{navLink.href}}" ng-class="{active: navLink.isActive}" ng-bind="navLink.label"></a>
                                     </li>
-
-                                    <!--<li>-->
-                                        <!--<a href="#/" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'home'}">Home</a>-->
-                                    <!--</li>-->
-                                    <!--<li><a href="#/portfolio" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'portfolio'}">Portfolio</a></li>-->
-                                    <!--<li>-->
-                                        <!--<a href="#/about" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'about'}">About-->
-                                            <!--Us</a></li>-->
-                                    <!--<li>-->
-                                        <!--<a href="#/contact" ng-class="{active: base.$rootScope.appData.activeNavigationLink == 'contact'}">Contact-->
-                                            <!--Us</a></li>-->
                                 </ul>
                             </div>
                         </div>

@@ -1,18 +1,12 @@
 .home-hero {
-  background: url('http://www.syringarealty.com/briefcase/102641_8272012104937AM80594.jpg') no-repeat center center;
-  @include hero(689px);
+  background: url('/dist/images/home.jpg') no-repeat center center;
+  @include hero(100vh);
 
-  .hero-bg {
+  .hero-overlay {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    //z-index: 99;
-
-    /* Pull the background 70px higher to the same place as #bg's */
-    background-color: rgba(0, 0, 0, 0.71);
-    //filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.55);
+    width: 100%;
+    height: inherit;
   }
 
   .hero-text {
@@ -27,28 +21,54 @@
       position: relative;
     }
 
-    ul {
-      position: relative;
+    p {
+      & > em {
+        font-size: 200%;
+      }
+    }
 
-      li {
-        color: white;
+    h1 {
+      font-size: 250%;
+      margin-top:2rem;
+      margin-bottom: 2rem;
+
+      @include breakpoint(small only) {
+        font-size: 150%
       }
     }
 
     .button {
       margin-top: 1rem;
       position: relative;
+      border-radius: 30px;
+      padding-right: 2rem;
+      padding-left: 2rem;
+      outline: none;
+    }
+  }
+}
+
+.home-content {
+  margin-top: 5rem;
+
+  & > div.row.full-width {
+    &:nth-of-type(odd) {
+      background-color: $gray-bg-color;
+    }
+
+    div.row.standard-width {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+
+      p {
+        @include breakpoint(small only) {
+          margin-top: 1rem;
+        }
+      }
     }
   }
 
-  @include breakpoint(medium up) {
-    h1 + p {
-      font-size: 160%;
-    }
-  }
-
-  p > span {
-    color: #70B5E1;
-    font-size: 120%;
+  h3 {
+    //margin-top: 3rem;
   }
 }

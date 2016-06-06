@@ -54,6 +54,7 @@ class AboutUsController {
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'About Us';
+        this.$rootScope.appData.isLight = true;
 
 
         this.$timeout(() => {
@@ -63,7 +64,7 @@ class AboutUsController {
                         $(triggerSelector).velocity("transition.slideLeftIn", { duration: 750, stagger: 150 });
                     })
                     .on("leave", function (e) {
-                        $(triggerSelector).velocity({opacity: 0}, { duration: 750, stagger: 150 });
+                        $(triggerSelector).velocity({opacity: 0}, { duration: 300, stagger: 150 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be
                     .triggerHook(.75);
@@ -75,7 +76,7 @@ class AboutUsController {
                         $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
                     })
                     .on("leave", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity({opacity: 0}, { duration: 750, stagger: 200 });
+                        $(triggerSelector).find('h1,h1+p').velocity({opacity: 0}, { duration: 300, stagger: 200 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be
                     .triggerHook(.75);

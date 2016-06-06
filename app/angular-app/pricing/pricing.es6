@@ -48,6 +48,7 @@ class PricingController {
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'Pricing';
+        this.$rootScope.appData.isLight = false;
 
         this.$timeout(() => {
             let items = $('.pricing-wrapper');

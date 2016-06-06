@@ -22,11 +22,15 @@ class HomeController {
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'Cinescape';
+        this.$rootScope.appData.isLight = true;
 
         this.$timeout(() => {
-            this.velocity($('h1 > small'), 'transition.slideRightIn', {duration: 1000});
-            this.velocity($('h1 > span'), 'transition.expandIn', {duration: 2000});
+            this.velocity($('.hero-text').find('p,h1,button'), 'transition.slideUpIn', {duration: 1000, stagger: 100, drag: true});
         }, 0);
+    }
+
+    onLearnMore() {
+        this.velocity($('.home-content > .row:first'), 'scroll', {duration: 1000, easing: 'easeOutExpo'});
     }
 }
 

@@ -19,6 +19,7 @@ class PortfolioController {
 
     init() {
         this.$rootScope.appData.smallScreenHeader = 'Portfolio';
+        this.$rootScope.appData.isLight = false;
 
         // this.$timeout(() => {
         //     let items = $('form');
