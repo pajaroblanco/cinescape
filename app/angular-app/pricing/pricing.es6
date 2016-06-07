@@ -23,7 +23,7 @@ class PricingController {
                 description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
                 houseSize: '< 2000 sqft house',
                 lotSize: '< 8000 sqft lot',
-                included: 'Professionally edited footage'
+                included: 'Professionally edited 4k footage'
             },
             {
                 title: 'Large Property',
@@ -31,7 +31,7 @@ class PricingController {
                 description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
                 houseSize: '2001 - 3500 sqft house',
                 lotSize: '8001 - 16000 sqft lot',
-                included: 'Professionally edited footage'
+                included: 'Professionally edited 4k footage'
             },
             {
                 title: 'Luxury Property',
@@ -39,7 +39,7 @@ class PricingController {
                 description: '* This is just an estimate. Pricing is subject to change based on each individual property.',
                 houseSize: '> 3500 sqft house',
                 lotSize: '> 16000 sqft lot',
-                included: 'Professionally edited footage'
+                included: 'Professionally edited 4k footage'
             }
         ];
 

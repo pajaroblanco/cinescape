@@ -66,6 +66,8 @@
       padding-bottom: 4rem;
 
       p {
+        font-size: 110%;
+
         @include breakpoint(small only) {
           margin-top: 1rem;
         }
