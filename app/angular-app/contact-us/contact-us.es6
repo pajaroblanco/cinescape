@@ -29,8 +29,8 @@ class ContactUsController {
         this.$rootScope.appData.isLight = false;
 
         this.$timeout(() => {
-            let items = $('form');
-            this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
+            let items = $('.callout, form');
+            this.velocity(items, 'transition.slideUpIn', {duration: 500, stagger: 150});
         }, 0);
     }
 
