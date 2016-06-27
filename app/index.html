@@ -51,7 +51,7 @@
                                 </a>
                             </div>
                             <div class="column show-for-medium">
-                                <ul class="menu align-right" ng-class="{light: base.$rootScope.appData.isLight}">
+                                <ul class="menu align-right light">
                                     <li ng-repeat="navLink in base.navLinks track by navLink.label">
                                         <a ng-href="{{navLink.href}}" ng-class="{active: navLink.isActive}" ng-bind="navLink.label"></a>
                                     </li>

@@ -7,6 +7,8 @@ header {
   position: absolute;
   z-index: 2;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: solid 1px #363636;
 
   @include breakpoint(small only) {
     //height: auto;
@@ -22,19 +24,24 @@ header {
 
   a.logo {
     i {
-      background: url('http://cinescape.us/wp-content/uploads/2016/05/Logo6.png') no-repeat center center;
+      background: url('images/logo-bg-no-frame-dark.svg') no-repeat center center;
       //background-size: cover;
-      height: 70px;
+      height: 75px;
       max-width: 90vw;
       display: inline-block;
-      background-size: 100%;
-      width: 200px;
+      width: 267px;
+      transition: background 300ms;
       //background-repeat: no-repeat;
+
+      &:hover {
+        background-color: rgb(31, 31, 31);
+      }
     }
   }
 
   ul.menu {
     //border-top: solid 1px white;
+    margin-top: 10px;
 
     li {
       a {
@@ -57,7 +64,7 @@ header {
           left: 0;
           bottom: -1px;
           height: 2px;
-          background: $primary-color;
+          background: $dark-gray;
           display: block;
           width: 100%;
           -webkit-transform: scaleX(0);
@@ -81,7 +88,7 @@ header {
             left: 0;
             bottom: -1px;
             height: 2px;
-            background: orange;
+            background: $cinescape-color;
             display: block;
             width: 100%;
             -webkit-transform: scaleX(0);
