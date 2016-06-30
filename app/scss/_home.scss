@@ -35,6 +35,10 @@
       position: relative;
       transform: scaleX(1);
       background-color: darken($cinescape-color, 20%);
+
+      @include breakpoint(small only) {
+        display:none;
+      }
     }
   }
 
