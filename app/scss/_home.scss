@@ -1,7 +1,23 @@
 .home-hero {
-  background: url('../dist/images/home.jpg') no-repeat center center;
+  //background: url('../dist/images/home.jpg') no-repeat center center;
+  //background-position: center center;
+  //background-repeat: no-repeat;
+  //transition: background-image 1.0s cubic-bezier(0.165, 0.84, 0.44, 1);
   //background: url('https://i.ytimg.com/vi/zzo4fF6MFYM/maxresdefault.jpg') no-repeat center center;
   @include hero(100vh);
+
+  .hero-img {
+    position:absolute;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: opacity 2.0s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+    @include hero(100vh);
+
+    &.hero-active {
+      opacity: 1;
+    }
+  }
 
   .hero-overlay {
     position: absolute;
