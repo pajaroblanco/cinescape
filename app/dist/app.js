@@ -434,21 +434,12 @@ var HomeController = function () {
             if (this.initialAnimationComplete) this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', { duration: 1500 });
 
             var sectionProgress = $('.sectionProgress');
+            var transitionInterval = 1000;
+            this.velocity(sectionProgress, 'stop');
 
-            console.log(Foundation.MediaQuery.current);
-            if (Foundation.MediaQuery.current == 'small') {
-                this.velocity(sectionProgress, 'stop');
-                sectionProgress.hide();
-            } else {
-                (function () {
-                    var transitionInterval = 1000;
-                    _this2.velocity(sectionProgress, 'stop');
-                    // sectionProgress.velocity('stop');
-                    _this2.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
-                            _this2.velocity(sectionProgress, { scaleX: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
-                        } });
-                })();
-            }
+            this.velocity(sectionProgress, { scaleY: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
+                    _this2.velocity(sectionProgress, { scaleY: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
+                } });
         }
     }, {
         key: 'onLearnMore',

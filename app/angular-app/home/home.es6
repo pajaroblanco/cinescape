@@ -85,20 +85,12 @@ class HomeController {
             this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', {duration: 1500});
 
         let sectionProgress = $('.sectionProgress');
+        let transitionInterval = 1000;
+        this.velocity(sectionProgress, 'stop');
 
-        console.log(Foundation.MediaQuery.current); 
-        if (Foundation.MediaQuery.current == 'small') {
-            this.velocity(sectionProgress, 'stop');
-            sectionProgress.hide();
-        }
-        else {
-            let transitionInterval = 1000;
-            this.velocity(sectionProgress, 'stop');
-            // sectionProgress.velocity('stop');
-            this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
-                this.velocity(sectionProgress, {scaleX: 0}, {duration: this.sectionChangeInterval - transitionInterval});
-            }});
-        }
+        this.velocity(sectionProgress, {scaleY: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
+            this.velocity(sectionProgress, {scaleY: 0}, {duration: this.sectionChangeInterval - transitionInterval});
+        }});
     }
 
     onLearnMore() {
