@@ -370,16 +370,22 @@ var HomeController = function () {
             section: 1,
             backgroundImage: 'camera.jpg',
             slogan: 'SOME OTHER SLOGAN HERE 1',
+            title: 'Commercial Productions',
+            learnMoreText: 'Learn More About Commercial Productions',
             detailUrl: '/pricing'
         }, {
             section: 2,
             backgroundImage: 'home.jpg',
             slogan: 'AERIAL CINEMATOGRAPHY FOR REAL ESTATE PROFESSIONALS',
+            title: 'Real Estate Cinematography',
+            learnMoreText: 'Learn More About Real Estate Cinematography',
             detailUrl: '/pricing'
         }, {
             section: 3,
-            backgroundImage: 'video-editing.jpg',
+            backgroundImage: 'aerial-river.jpg',
             slogan: 'SOME OTHER SLOGAN HERE 2',
+            title: 'Aerial Surveying',
+            learnMoreText: 'Learn More About Aerial Surveying',
             detailUrl: '/pricing'
         }];
         this.currentSection = this.sections[0];
@@ -421,10 +427,19 @@ var HomeController = function () {
     }, {
         key: 'goToSection',
         value: function goToSection(section) {
+            var _this2 = this;
+
             this.currentSection = section;
 
             if (this.initialAnimationComplete) this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', { duration: 1500 });
-            //$('.home-hero').css('background-image', "url('../dist/images/" + section.backgroundImage + "')");
+
+            var transitionInterval = 1000;
+            var sectionProgress = $('.sectionProgress');
+            this.velocity(sectionProgress, 'stop');
+            // sectionProgress.velocity('stop');
+            this.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
+                    _this2.velocity(sectionProgress, { scaleX: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
+                } });
         }
     }, {
         key: 'onLearnMore',

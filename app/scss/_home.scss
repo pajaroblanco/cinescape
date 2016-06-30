@@ -6,6 +6,38 @@
   //background: url('https://i.ytimg.com/vi/zzo4fF6MFYM/maxresdefault.jpg') no-repeat center center;
   @include hero(100vh);
 
+  .sectionIndicatorWrapper {
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 15px);
+    color: #fff;
+
+    ul {
+      left: 31px;
+      position: relative;
+      margin-left: 0;
+    }
+
+    .sectionIndicator {
+      font-size: 30px;
+      width: 20px;
+      float: left;
+
+      &.active {
+        color:$cinescape-color;
+      }
+    }
+
+    .sectionProgress {
+      height: 1px;
+      width: 100%;
+      top: 25px;
+      position: relative;
+      transform: scaleX(1);
+      background-color: darken($cinescape-color, 20%);
+    }
+  }
+
   .hero-img {
     position:absolute;
     background-position: center center;
@@ -44,6 +76,11 @@
     }
 
     p {
+      border-bottom: solid 1px rgba(255, 255, 255, 0.32);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+
       & > em {
         font-size: 200%;
       }

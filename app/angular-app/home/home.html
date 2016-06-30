@@ -1,10 +1,16 @@
 <div class="row align-middle home-hero align-center">
     <div ng-repeat="section in vm.sections track by $index" class="hero-img" ng-class="{'hero-active': vm.currentSection.section == section.section}" style="background-image: url('../dist/images/{{section.backgroundImage}}');"></div>
     <div class="hero-overlay"></div>
+    <div class="sectionIndicatorWrapper">
+        <ul>
+            <li ng-repeat="section in vm.sections track by $index" class="sectionIndicator" ng-class="{active: vm.currentSection.section == section.section}"></li>
+        </ul>
+        <div class="sectionProgress"></div>
+    </div>
     <div class="column text-center hero-text">
-        <p style="opacity: 0"><em>Cinescape</em></p>
+        <p style="opacity: 0"><em ng-bind="vm.currentSection.title"></em></p>
         <h1 style="opacity: 0" ng-bind="vm.currentSection.slogan">Aerial Cinematography for Real Estate Professionals</h1>
-        <button style="opacity: 0" ng-click="vm.onLearnMore()" class="button large alert">Learn More</button>
+        <button style="opacity: 0" ng-click="vm.onLearnMore()" class="button large alert" nng-bind="vm.currentSection.learnMoreText">Learn More</button>
     </div>
 </div>
 

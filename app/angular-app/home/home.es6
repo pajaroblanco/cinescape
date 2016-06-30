@@ -25,18 +25,24 @@ class HomeController {
                 section: 1,
                 backgroundImage: 'camera.jpg',
                 slogan: 'SOME OTHER SLOGAN HERE 1',
+                title: 'Commercial Productions',
+                learnMoreText: 'Learn More About Commercial Productions',
                 detailUrl: '/pricing'
             },
             {
                 section: 2,
                 backgroundImage: 'home.jpg',
                 slogan: 'AERIAL CINEMATOGRAPHY FOR REAL ESTATE PROFESSIONALS',
+                title: 'Real Estate Cinematography',
+                learnMoreText: 'Learn More About Real Estate Cinematography',
                 detailUrl: '/pricing'
             },
             {
                 section: 3,
-                backgroundImage: 'video-editing.jpg',
+                backgroundImage: 'aerial-river.jpg',
                 slogan: 'SOME OTHER SLOGAN HERE 2',
+                title: 'Aerial Surveying',
+                learnMoreText: 'Learn More About Aerial Surveying',
                 detailUrl: '/pricing'
             }
         ];
@@ -77,7 +83,14 @@ class HomeController {
 
         if (this.initialAnimationComplete)
             this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', {duration: 1500});
-        //$('.home-hero').css('background-image', "url('../dist/images/" + section.backgroundImage + "')");
+
+        let transitionInterval = 1000;
+        let sectionProgress = $('.sectionProgress');
+        this.velocity(sectionProgress, 'stop');
+        // sectionProgress.velocity('stop');
+        this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
+            this.velocity(sectionProgress, {scaleX: 0}, {duration: this.sectionChangeInterval - transitionInterval});
+        }});
     }
 
     onLearnMore() {
