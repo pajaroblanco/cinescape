@@ -8,10 +8,10 @@ class HomeController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', HomeController];
+        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', HomeController];
     }
 
-    constructor($http, $rootScope, $timeout, velocity, $interval, _) {
+    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
@@ -48,11 +48,12 @@ class HomeController {
         ];
         this.currentSection = this.sections[0];
         this.initialAnimationComplete = false;
+        this.sectionInterval = null;
 
-        this.init();
+        this.init($scope);
     }
 
-    init() {
+    init($scope) {
         this.$rootScope.appData.smallScreenHeader = 'Cinescape';
         this.$rootScope.appData.isLight = true;
 
@@ -61,13 +62,19 @@ class HomeController {
                 this.initialAnimationComplete = true;
             };
 
-            this.velocity($('.hero-text').find('p,h1,button'), 'transition.slideUpIn', {duration: 1000, stagger: 100, drag: true, complete: onComplete});
+            this.velocity($('.hero-text').find('.title-wrapper,h1,button'), 'transition.slideUpIn', {duration: 1000, stagger: 100, drag: true, complete: onComplete});
         }, 0);
 
-        this.$interval(() => {
+        this.sectionInterval = this.$interval(() => {
             this.goToNextSection();
         }, this.sectionChangeInterval);
         this.goToSection(this.currentSection);
+
+        $scope.$on('$destroy', () => {
+            if (this.sectionInterval) {
+                this.$interval.cancel(this.sectionInterval);
+            }
+        })
     }
 
     goToNextSection() {
@@ -84,12 +91,22 @@ class HomeController {
         if (this.initialAnimationComplete)
             this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', {duration: 1500});
 
-        let sectionProgress = $('.sectionProgress');
+        let sectionProgress = $('.section-progress');
         let transitionInterval = 1000;
         this.velocity(sectionProgress, 'stop');
 
-        this.velocity(sectionProgress, {scaleY: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
-            this.velocity(sectionProgress, {scaleY: 0}, {duration: this.sectionChangeInterval - transitionInterval});
+        section.translateStyle = {'transform': 'translateY(0) scale(1)'};
+
+        let translateY = 40;
+        let topPadding = 35;
+        let inactiveSections = this._.filter(this.sections, s => s != section);
+        this._.forEach(inactiveSections, (inactiveSection, index) => {
+            inactiveSection.translateStyle = {'transform': 'translateY(-' + ((translateY * (index+1)) + topPadding) + 'px) scale(.5)'};
+            console.log(inactiveSection.translateStyle);
+        });
+
+        this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
+            this.velocity(sectionProgress, {scaleX: 0}, {duration: this.sectionChangeInterval - transitionInterval});
         }});
     }
 

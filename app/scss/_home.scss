@@ -8,14 +8,18 @@
 
   .sectionIndicatorWrapper {
     position: absolute;
-    top: 100px;
-    left: 15px;// calc(50% - 15px);
     color: #fff;
+    top: 94vh;
+    left: calc(50% - 30px);
 
     ul {
       left: 31px;
       position: relative;
       margin-left: 0;
+
+      li {
+        float: left;
+      }
     }
 
     .sectionIndicator {
@@ -29,20 +33,20 @@
       }
     }
 
-    .sectionProgress {
-      height: 75%;
-      width: 2px;
-      top: 5px;
-      position: absolute;
-      transform: scaleX(1);
-      transform-origin: 50% 50%;
-      right: -5px;
-      background-color: transparentize(darken($cinescape-color, 20%), .33);
-
-      //@include breakpoint(small only) {
-      //  display:none;
-      //}
-    }
+    //.sectionProgress {
+    //  height: 75%;
+    //  width: 2px;
+    //  top: 5px;
+    //  position: absolute;
+    //  transform: scaleX(1);
+    //  transform-origin: 50% 50%;
+    //  right: -5px;
+    //  background-color: transparentize(darken($cinescape-color, 20%), .33);
+    //
+    //  //@include breakpoint(small only) {
+    //  //  display:none;
+    //  //}
+    //}
   }
 
   .hero-img {
@@ -82,14 +86,43 @@
       position: relative;
     }
 
-    p {
-      border-bottom: solid 1px rgba(255, 255, 255, 0.32);
+    hr {
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      border-bottom-color: rgba(255, 255, 255, 0.32);
 
-      & > em {
-        font-size: 200%;
+      //&::before {
+      //  display:block;
+      //  content:'';
+      //  width: 100%;
+      //  background-color:transparentize(darken($cinescape-color, 20%), .33);
+      //  height: 1px;
+      //  position:absolute;
+      //}
+    }
+
+    .title-wrapper {
+      height: 55px;
+
+      p {
+        color: $white;
+        line-height: 1;
+        opacity: .3;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        width: 100%;
+        transition: all 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
+        margin-bottom: 0;
+
+        & > em {
+          font-size: 200%;
+        }
+
+        &.active {
+          opacity: 1;
+          //border-bottom: solid 1px rgba(255, 255, 255, 0.32);
+          //max-width: 700px;
+        }
       }
     }
 

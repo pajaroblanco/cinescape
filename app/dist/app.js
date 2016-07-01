@@ -351,11 +351,11 @@ var HomeController = function () {
     }, {
         key: 'getDependencies',
         value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', HomeController];
+            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', HomeController];
         }
     }]);
 
-    function HomeController($http, $rootScope, $timeout, velocity, $interval, _) {
+    function HomeController($http, $rootScope, $timeout, velocity, $interval, _, $scope) {
         _classCallCheck(this, HomeController);
 
         this.$http = $http;
@@ -390,13 +390,14 @@ var HomeController = function () {
         }];
         this.currentSection = this.sections[0];
         this.initialAnimationComplete = false;
+        this.sectionInterval = null;
 
-        this.init();
+        this.init($scope);
     }
 
     _createClass(HomeController, [{
         key: 'init',
-        value: function init() {
+        value: function init($scope) {
             var _this = this;
 
             this.$rootScope.appData.smallScreenHeader = 'Cinescape';
@@ -407,13 +408,19 @@ var HomeController = function () {
                     _this.initialAnimationComplete = true;
                 };
 
-                _this.velocity($('.hero-text').find('p,h1,button'), 'transition.slideUpIn', { duration: 1000, stagger: 100, drag: true, complete: onComplete });
+                _this.velocity($('.hero-text').find('.title-wrapper,h1,button'), 'transition.slideUpIn', { duration: 1000, stagger: 100, drag: true, complete: onComplete });
             }, 0);
 
-            this.$interval(function () {
+            this.sectionInterval = this.$interval(function () {
                 _this.goToNextSection();
             }, this.sectionChangeInterval);
             this.goToSection(this.currentSection);
+
+            $scope.$on('$destroy', function () {
+                if (_this.sectionInterval) {
+                    _this.$interval.cancel(_this.sectionInterval);
+                }
+            });
         }
     }, {
         key: 'goToNextSection',
@@ -433,12 +440,24 @@ var HomeController = function () {
 
             if (this.initialAnimationComplete) this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', { duration: 1500 });
 
-            var sectionProgress = $('.sectionProgress');
+            var sectionProgress = $('.section-progress');
             var transitionInterval = 1000;
             this.velocity(sectionProgress, 'stop');
 
-            this.velocity(sectionProgress, { scaleY: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
-                    _this2.velocity(sectionProgress, { scaleY: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
+            section.translateStyle = { 'transform': 'translateY(0) scale(1)' };
+
+            var translateY = 40;
+            var topPadding = 35;
+            var inactiveSections = this._.filter(this.sections, function (s) {
+                return s != section;
+            });
+            this._.forEach(inactiveSections, function (inactiveSection, index) {
+                inactiveSection.translateStyle = { 'transform': 'translateY(-' + (translateY * (index + 1) + topPadding) + 'px) scale(.5)' };
+                console.log(inactiveSection.translateStyle);
+            });
+
+            this.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
+                    _this2.velocity(sectionProgress, { scaleX: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
                 } });
         }
     }, {
