@@ -55,6 +55,7 @@
     background-repeat: no-repeat;
     transition: opacity 2.0s cubic-bezier(0.165, 0.84, 0.44, 1);
     opacity: 0;
+    top: 0;
     @include hero(100vh);
 
     &.hero-active {
