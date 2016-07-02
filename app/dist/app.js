@@ -438,7 +438,11 @@ var HomeController = function () {
 
             this.currentSection = section;
 
-            if (this.initialAnimationComplete) this.velocity($('.hero-text').find('h1'), 'transition.slideRightIn', { duration: 1500 });
+            if (this.initialAnimationComplete) {
+                var slogan = $('.hero-text').find('h1');
+                this.velocity(slogan, 'stop');
+                this.velocity(slogan, 'transition.slideRightIn', { duration: 1500 });
+            }
 
             var sectionProgress = $('.section-progress');
             var transitionInterval = 1000;
