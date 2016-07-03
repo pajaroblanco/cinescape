@@ -56,15 +56,34 @@ class AboutUsController {
         this.$rootScope.appData.smallScreenHeader = 'About Us';
         this.$rootScope.appData.isLight = true;
 
+        let firstContactEnter = true;
+        let firstContactLeave = true;
 
         this.$timeout(() => {
             let getContactCardScene = (triggerSelector) => {
                 return new this.ScrollMagic.Scene({triggerElement: triggerSelector})
                     .on("enter", function (e) {
-                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: 750, stagger: 150 });
+                        let duration = 750;
+                        let stagger = 150;
+
+                        if (firstContactEnter) {
+                            duration = 1;
+                            stagger = 0;
+                            firstContactEnter = false;
+                        }
+
+                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
+
                     })
                     .on("leave", function (e) {
-                        $(triggerSelector).velocity({opacity: 0}, { duration: 300, stagger: 150 });
+                        let duration = 300;
+
+                        if (firstContactLeave) {
+                            duration = 0;
+                            firstContactLeave = false;
+                        }
+
+                        $(triggerSelector).velocity({opacity: 0}, { duration: duration, stagger: 0 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be
                     .triggerHook(.75);
@@ -85,8 +104,8 @@ class AboutUsController {
             let scrollMagicController = new this.ScrollMagic.Controller();
             scrollMagicController.addScene(getContactCardScene('.contact-card'));
             scrollMagicController.addScene(getSectionScene('.about-hero'));
-            scrollMagicController.addScene(getSectionScene('.philosophy'));
-            //scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
+            // scrollMagicController.addScene(getSectionScene('.philosophy'));
+            // scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
             //scrollMagicController.addScene(getContactCardScene('#human-centered-container'));
         }, 0);
     }

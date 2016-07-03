@@ -162,34 +162,13 @@
       padding-right: 2rem;
       padding-left: 2rem;
       outline: none;
-    }
-  }
-}
 
-.home-content {
-  margin-top: 5rem;
-
-  & > div.row.full-width {
-    &:nth-of-type(odd) {
-      background-color: $gray-bg-color;
-    }
-
-    div.row.standard-width {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-
-      p {
-        font-size: 110%;
-
-        @include breakpoint(small only) {
-          margin-top: 1rem;
-        }
+      & > small {
+        text-transform: none;
+        margin-left: 5px;
+        font-size: 11px;
       }
     }
-  }
-
-  h3 {
-    //margin-top: 3rem;
   }
 }
 

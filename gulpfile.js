@@ -60,7 +60,8 @@ var externalJsPaths = [
 ];
 
 var externalJsPathsNoBabel = [
-    "app/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"
+    "app/bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js",
+    "app/bower_components/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js"
 ];
 
 var appJsPaths = [

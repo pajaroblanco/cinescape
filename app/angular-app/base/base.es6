@@ -23,8 +23,9 @@ class BaseController {
 
         this.navLinks = [
             {label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false},
-            {label: 'Portfolio', smallLabel: $sce.trustAsHtml('<i class="fa fa-youtube-play"></i><span>Portfolio</span>'), href: '#/portfolio', isActive: false},
-            {label: 'Pricing', smallLabel: $sce.trustAsHtml('<i class="fa fa-dollar"></i><span>Pricing</span>'), href: '#/pricing', isActive: false},
+            {label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false},
+            {label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false},
+            {label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
             {label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false},
             {label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false}
         ];
@@ -36,28 +37,9 @@ class BaseController {
         //when the user navigates to a new page, clear the page messages/errors
         $scope.$on('$locationChangeStart', event => {
             let currentPath = this.$location.path();
-            switch (currentPath) {
-                case '/':
-                    this.setLinksInactive();
-                    this._.find(this.navLinks, {href: '#/'}).isActive = true;
-                    break;
-                case '/about':
-                    this.setLinksInactive();
-                    this._.find(this.navLinks, {href: '#/about'}).isActive = true;
-                    break;
-                case '/contact':
-                    this.setLinksInactive();
-                    this._.find(this.navLinks, {href: '#/contact'}).isActive = true;
-                    break;
-                case '/portfolio':
-                    this.setLinksInactive();
-                    this._.find(this.navLinks, {href: '#/portfolio'}).isActive = true;
-                    break;
-                case '/pricing':
-                    this.setLinksInactive();
-                    this._.find(this.navLinks, {href: '#/pricing'}).isActive = true;
-                    break;
-            }
+
+            this.setLinksInactive();
+            this._.find(this.navLinks, {href: '#' + currentPath}).isActive = true;
 
             this.scrollToTop(0);
         });

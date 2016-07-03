@@ -44,6 +44,24 @@ angularApp.config(['$locationProvider', '$routeProvider', function ($locationPro
             controllerAs: 'vm',
             label: 'Pricing'
         }).
+        when('/real-estate', {
+            templateUrl: 'angular-app/real-estate/real-estate.html',
+            controller: 'RealEstateCtrl',
+            controllerAs: 'vm',
+            label: 'Real Estate Cinematography'
+        }).
+        when('/commercial', {
+            templateUrl: 'angular-app/commercial/commercial.html',
+            controller: 'CommercialCtrl',
+            controllerAs: 'vm',
+            label: 'Commercial Productions'
+        }).
+        when('/aerial', {
+            templateUrl: 'angular-app/aerial/aerial.html',
+            controller: 'AerialCtrl',
+            controllerAs: 'vm',
+            label: 'Aerial Surveying'
+        }).
         otherwise({redirectTo: '/'});
 }]);
 

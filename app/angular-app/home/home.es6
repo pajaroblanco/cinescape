@@ -8,16 +8,17 @@ class HomeController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', HomeController];
+        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', HomeController];
     }
 
-    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope) {
+    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
         this.velocity = velocity;
         this.$interval = $interval;
         this._ = _;
+        this.$location = $location;
 
         this.sectionChangeInterval = 10000;
         this.sections = [
@@ -27,7 +28,7 @@ class HomeController {
                 slogan: 'SOME OTHER SLOGAN HERE 1',
                 title: 'Commercial Productions',
                 learnMoreText: 'Learn More About Commercial Productions',
-                detailUrl: '/pricing'
+                detailUrl: '/commercial'
             },
             {
                 section: 2,
@@ -35,7 +36,7 @@ class HomeController {
                 slogan: 'AERIAL CINEMATOGRAPHY FOR REAL ESTATE PROFESSIONALS',
                 title: 'Real Estate Cinematography',
                 learnMoreText: 'Learn More About Real Estate Cinematography',
-                detailUrl: '/pricing'
+                detailUrl: '/real-estate'
             },
             {
                 section: 3,
@@ -43,7 +44,7 @@ class HomeController {
                 slogan: 'SOME OTHER SLOGAN HERE 2',
                 title: 'Aerial Surveying',
                 learnMoreText: 'Learn More About Aerial Surveying',
-                detailUrl: '/pricing'
+                detailUrl: '/aerial'
             }
         ];
         this.currentSection = this.sections[0];
@@ -144,7 +145,8 @@ class HomeController {
     }
 
     onLearnMore() {
-        this.velocity($('.home-content > .row:first'), 'scroll', {duration: 1000, easing: 'easeOutExpo'});
+        //this.velocity($('.home-content > .row:first'), 'scroll', {duration: 1000, easing: 'easeOutExpo'});
+        this.$location.path(this.currentSection.detailUrl);
     }
 }
 

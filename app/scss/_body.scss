@@ -58,4 +58,8 @@ h1 {
   &.radius {
     border-radius: 3px;
   }
+
+  & > i.fa {
+    margin-right: 12px;
+  }
 }
