@@ -234,49 +234,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Created by Brandon on 6/2/2016.
- */
-
-var CommercialController = function () {
-    _createClass(CommercialController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'CommercialCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', CommercialController];
-        }
-    }]);
-
-    function CommercialController($rootScope) {
-        _classCallCheck(this, CommercialController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(CommercialController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Commercial Productions';
-            this.$rootScope.appData.isLight = false;
-        }
-    }]);
-
-    return CommercialController;
-}();
-
-registerComponent('app.controllers').controller(CommercialController.getName(), CommercialController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
  * This is the base controller attached to the <body> tag
  */
 
@@ -321,7 +278,10 @@ var BaseController = function () {
                 var currentPath = _this.$location.path();
 
                 _this.setLinksInactive();
-                _this._.find(_this.navLinks, { href: '#' + currentPath }).isActive = true;
+                var activeLink = _this._.find(_this.navLinks, { href: '#' + currentPath });
+                if (activeLink) {
+                    activeLink.isActive = true;
+                }
 
                 _this.scrollToTop(0);
             });
@@ -354,6 +314,49 @@ var BaseController = function () {
 }();
 
 registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
+var CommercialController = function () {
+    _createClass(CommercialController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'CommercialCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', CommercialController];
+        }
+    }]);
+
+    function CommercialController($rootScope) {
+        _classCallCheck(this, CommercialController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(CommercialController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Commercial Productions';
+            this.$rootScope.appData.isLight = false;
+        }
+    }]);
+
+    return CommercialController;
+}();
+
+registerComponent('app.controllers').controller(CommercialController.getName(), CommercialController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();

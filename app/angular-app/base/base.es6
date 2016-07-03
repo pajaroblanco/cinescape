@@ -39,7 +39,10 @@ class BaseController {
             let currentPath = this.$location.path();
 
             this.setLinksInactive();
-            this._.find(this.navLinks, {href: '#' + currentPath}).isActive = true;
+            let activeLink = this._.find(this.navLinks, {href: '#' + currentPath});
+            if (activeLink) {
+                activeLink.isActive = true;
+            }
 
             this.scrollToTop(0);
         });
