@@ -470,7 +470,7 @@ var HomeController = function () {
         this._ = _;
         this.$location = $location;
 
-        this.sectionChangeInterval = 10000;
+        this.sectionChangeInterval = 8000;
         this.sections = [{
             section: 1,
             backgroundImage: 'camera.jpg',

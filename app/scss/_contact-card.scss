@@ -36,7 +36,7 @@
     text-align: center;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    transition: .5s ease-in-out;
+    transition: all .5s ease-in-out;
 
     @include breakpoint(small up) {
       height: 70%;

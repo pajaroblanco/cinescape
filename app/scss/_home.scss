@@ -136,6 +136,9 @@
         &.active {
           opacity: 1;
 
+          cursor: default;
+          pointer-events: none;
+
           //&:hover {
           //  color: $white;
           //}
