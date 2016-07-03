@@ -65,16 +65,54 @@ class HomeController {
             this.velocity($('.hero-text').find('.title-wrapper,h1,button'), 'transition.slideUpIn', {duration: 1000, stagger: 100, drag: true, complete: onComplete});
         }, 0);
 
-        this.sectionInterval = this.$interval(() => {
-            this.goToNextSection();
-        }, this.sectionChangeInterval);
+        this.resetSectionInterval();
         this.goToSection(this.currentSection);
 
         $scope.$on('$destroy', () => {
-            if (this.sectionInterval) {
-                this.$interval.cancel(this.sectionInterval);
-            }
+            this.$timeout.cancel(this.sectionStartDelayTimeout);
+            this.$interval.cancel(this.sectionInterval);
         })
+    }
+
+    resetSectionInterval(startDelay) {
+        if (!startDelay) {
+            startDelay = 0;
+        }
+
+        let startProgressBarAnimation = () => {
+            let sectionProgress = $('.section-progress');
+            let transitionInterval = 1000;
+            this.velocity(sectionProgress, 'stop');
+
+            this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
+                if (this.sectionInterval != null) {
+                    this.velocity(sectionProgress, {scaleX: 0}, {duration: this.sectionChangeInterval - transitionInterval});
+                }
+            }});
+        };
+
+        let resetInterval = () => {
+            this.sectionInterval = this.$interval(() => {
+                this.goToNextSection();
+            }, this.sectionChangeInterval);
+        };
+
+        if (startDelay > 0) {
+            this.$interval.cancel(this.sectionInterval);
+            this.sectionInterval = null;
+            startProgressBarAnimation();
+            this.$timeout.cancel(this.sectionStartDelayTimeout);
+            this.sectionStartDelayTimeout = this.$timeout(() => {
+                startProgressBarAnimation();
+                resetInterval();
+            }, startDelay);
+        }
+        else {
+            startProgressBarAnimation();
+            if (this.sectionInterval == null) {
+                resetInterval();
+            }
+        }
     }
 
     goToNextSection() {
@@ -85,7 +123,8 @@ class HomeController {
         this.goToSection(this.sections[index]);
     }
 
-    goToSection(section) {
+    goToSection(section, startDelay) {
+        this.resetSectionInterval(startDelay);
         this.currentSection = section;
 
         if (this.initialAnimationComplete) {
@@ -94,10 +133,6 @@ class HomeController {
             this.velocity(slogan, 'transition.slideRightIn', {duration: 1500});
         }
 
-        let sectionProgress = $('.section-progress');
-        let transitionInterval = 1000;
-        this.velocity(sectionProgress, 'stop');
-
         section.translateStyle = {'transform': 'translateY(0) scale(1)'};
 
         let translateY = 40;
@@ -105,12 +140,7 @@ class HomeController {
         let inactiveSections = this._.filter(this.sections, s => s != section);
         this._.forEach(inactiveSections, (inactiveSection, index) => {
             inactiveSection.translateStyle = {'transform': 'translateY(-' + ((translateY * (index+1)) + topPadding) + 'px) scale(.5)'};
-            console.log(inactiveSection.translateStyle);
         });
-
-        this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
-            this.velocity(sectionProgress, {scaleX: 0}, {duration: this.sectionChangeInterval - transitionInterval});
-        }});
     }
 
     onLearnMore() {

@@ -411,16 +411,56 @@ var HomeController = function () {
                 _this.velocity($('.hero-text').find('.title-wrapper,h1,button'), 'transition.slideUpIn', { duration: 1000, stagger: 100, drag: true, complete: onComplete });
             }, 0);
 
-            this.sectionInterval = this.$interval(function () {
-                _this.goToNextSection();
-            }, this.sectionChangeInterval);
+            this.resetSectionInterval();
             this.goToSection(this.currentSection);
 
             $scope.$on('$destroy', function () {
-                if (_this.sectionInterval) {
-                    _this.$interval.cancel(_this.sectionInterval);
-                }
+                _this.$timeout.cancel(_this.sectionStartDelayTimeout);
+                _this.$interval.cancel(_this.sectionInterval);
             });
+        }
+    }, {
+        key: 'resetSectionInterval',
+        value: function resetSectionInterval(startDelay) {
+            var _this2 = this;
+
+            if (!startDelay) {
+                startDelay = 0;
+            }
+
+            var startProgressBarAnimation = function startProgressBarAnimation() {
+                var sectionProgress = $('.section-progress');
+                var transitionInterval = 1000;
+                _this2.velocity(sectionProgress, 'stop');
+
+                _this2.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
+                        if (_this2.sectionInterval != null) {
+                            _this2.velocity(sectionProgress, { scaleX: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
+                        }
+                    } });
+            };
+
+            var resetInterval = function resetInterval() {
+                _this2.sectionInterval = _this2.$interval(function () {
+                    _this2.goToNextSection();
+                }, _this2.sectionChangeInterval);
+            };
+
+            if (startDelay > 0) {
+                this.$interval.cancel(this.sectionInterval);
+                this.sectionInterval = null;
+                startProgressBarAnimation();
+                this.$timeout.cancel(this.sectionStartDelayTimeout);
+                this.sectionStartDelayTimeout = this.$timeout(function () {
+                    startProgressBarAnimation();
+                    resetInterval();
+                }, startDelay);
+            } else {
+                startProgressBarAnimation();
+                if (this.sectionInterval == null) {
+                    resetInterval();
+                }
+            }
         }
     }, {
         key: 'goToNextSection',
@@ -433,9 +473,8 @@ var HomeController = function () {
         }
     }, {
         key: 'goToSection',
-        value: function goToSection(section) {
-            var _this2 = this;
-
+        value: function goToSection(section, startDelay) {
+            this.resetSectionInterval(startDelay);
             this.currentSection = section;
 
             if (this.initialAnimationComplete) {
@@ -443,10 +482,6 @@ var HomeController = function () {
                 this.velocity(slogan, 'stop');
                 this.velocity(slogan, 'transition.slideRightIn', { duration: 1500 });
             }
-
-            var sectionProgress = $('.section-progress');
-            var transitionInterval = 1000;
-            this.velocity(sectionProgress, 'stop');
 
             section.translateStyle = { 'transform': 'translateY(0) scale(1)' };
 
@@ -457,12 +492,7 @@ var HomeController = function () {
             });
             this._.forEach(inactiveSections, function (inactiveSection, index) {
                 inactiveSection.translateStyle = { 'transform': 'translateY(-' + (translateY * (index + 1) + topPadding) + 'px) scale(.5)' };
-                console.log(inactiveSection.translateStyle);
             });
-
-            this.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
-                    _this2.velocity(sectionProgress, { scaleX: 0 }, { duration: _this2.sectionChangeInterval - transitionInterval });
-                } });
         }
     }, {
         key: 'onLearnMore',

@@ -9,7 +9,7 @@
     </div>
     <div class="column text-center hero-text">
         <div class="title-wrapper" style="opacity: 0">
-            <p ng-repeat="section in vm.sections track by $index" ng-class="{active: vm.currentSection.section == section.section}" ng-style="section.translateStyle"><em ng-bind="section.title"></em></p>
+            <a ng-repeat="section in vm.sections track by $index" ng-class="{active: vm.currentSection.section == section.section}" ng-style="section.translateStyle" href="javascript:void(0);" ng-click="vm.goToSection(section, 20000)"><em ng-bind="section.title"></em></a>
         </div>
         <hr class="section-progress">
         <h1 style="opacity: 0" ng-bind="vm.currentSection.slogan">Aerial Cinematography for Real Estate Professionals</h1>
