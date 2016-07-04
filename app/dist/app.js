@@ -263,7 +263,9 @@ var BaseController = function () {
             activeNavigationLink: 'home'
         };
 
-        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false }, { label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false }, { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false }];
+        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false },
+        //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
+        { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false }];
 
         this.init($scope);
     }
@@ -470,7 +472,7 @@ var HomeController = function () {
         this._ = _;
         this.$location = $location;
 
-        this.sectionChangeInterval = 8000;
+        this.sectionChangeInterval = 9000;
         this.sections = [{
             section: 1,
             backgroundImage: 'camera.jpg',
@@ -485,14 +487,16 @@ var HomeController = function () {
             title: 'Real Estate Cinematography',
             learnMoreText: 'Learn More About Real Estate Cinematography',
             detailUrl: '/real-estate'
-        }, {
-            section: 3,
-            backgroundImage: 'aerial-river.jpg',
-            slogan: 'SOME OTHER SLOGAN HERE 2',
-            title: 'Aerial Surveying',
-            learnMoreText: 'Learn More About Aerial Surveying',
-            detailUrl: '/aerial'
-        }];
+        }
+        // {
+        //     section: 3,
+        //     backgroundImage: 'aerial-river.jpg',
+        //     slogan: 'SOME OTHER SLOGAN HERE 2',
+        //     title: 'Aerial Surveying',
+        //     learnMoreText: 'Learn More About Aerial Surveying',
+        //     detailUrl: '/aerial'
+        // }
+        ];
         this.currentSection = this.sections[0];
         this.initialAnimationComplete = false;
         this.sectionInterval = null;
@@ -537,6 +541,8 @@ var HomeController = function () {
                 var sectionProgress = $('.section-progress');
                 var transitionInterval = 1000;
                 _this2.velocity(sectionProgress, 'stop');
+
+                //return;
 
                 _this2.velocity(sectionProgress, { scaleX: 1 }, { duration: transitionInterval, easing: 'easeOutQuart', complete: function complete() {
                         if (_this2.sectionInterval != null) {

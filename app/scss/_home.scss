@@ -10,7 +10,7 @@
     position: absolute;
     color: #fff;
     top: 94vh;
-    left: calc(50% - 30px);
+    left: calc(50% - 18px);
 
     ul {
       left: 31px;
@@ -97,7 +97,17 @@
     hr {
       max-width: 700px;
       border-width: 2px;
-      border-bottom-color: rgba(255, 255, 255, 0.32);
+      border-bottom-color: #b6b6b6;
+      transform-origin: 0%;
+
+      &.section-progress {
+        position: relative;
+        top: -22px;
+      }
+
+      &.section-progress-bg {
+        border-bottom-color: transparentize($cinescape-color, .5);
+      }
 
       //&::before {
       //  display:block;

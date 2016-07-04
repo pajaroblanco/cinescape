@@ -25,7 +25,7 @@ class BaseController {
             {label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false},
             {label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false},
             {label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false},
-            {label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
+            //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
             {label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false},
             {label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false}
         ];

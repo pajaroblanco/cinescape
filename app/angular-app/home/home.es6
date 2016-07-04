@@ -20,7 +20,7 @@ class HomeController {
         this._ = _;
         this.$location = $location;
 
-        this.sectionChangeInterval = 8000;
+        this.sectionChangeInterval = 9000;
         this.sections = [
             {
                 section: 1,
@@ -37,15 +37,15 @@ class HomeController {
                 title: 'Real Estate Cinematography',
                 learnMoreText: 'Learn More About Real Estate Cinematography',
                 detailUrl: '/real-estate'
-            },
-            {
-                section: 3,
-                backgroundImage: 'aerial-river.jpg',
-                slogan: 'SOME OTHER SLOGAN HERE 2',
-                title: 'Aerial Surveying',
-                learnMoreText: 'Learn More About Aerial Surveying',
-                detailUrl: '/aerial'
             }
+            // {
+            //     section: 3,
+            //     backgroundImage: 'aerial-river.jpg',
+            //     slogan: 'SOME OTHER SLOGAN HERE 2',
+            //     title: 'Aerial Surveying',
+            //     learnMoreText: 'Learn More About Aerial Surveying',
+            //     detailUrl: '/aerial'
+            // }
         ];
         this.currentSection = this.sections[0];
         this.initialAnimationComplete = false;
@@ -84,6 +84,8 @@ class HomeController {
             let sectionProgress = $('.section-progress');
             let transitionInterval = 1000;
             this.velocity(sectionProgress, 'stop');
+
+            //return;
 
             this.velocity(sectionProgress, {scaleX: 1}, {duration: transitionInterval, easing: 'easeOutQuart', complete: () => {
                 if (this.sectionInterval != null) {
