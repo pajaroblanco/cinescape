@@ -101,7 +101,7 @@ var AboutUsController = function () {
         }, {
             photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
             name: 'Sam Low',
-            title: 'Cinematographer',
+            title: 'Director / Compositor',
             email: 'sam@cinescape.us'
         }, {
             photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
@@ -191,49 +191,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Created by Brandon on 6/2/2016.
- */
-
-var AerialController = function () {
-    _createClass(AerialController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'AerialCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', AerialController];
-        }
-    }]);
-
-    function AerialController($rootScope) {
-        _classCallCheck(this, AerialController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(AerialController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Aerial Surveying';
-            this.$rootScope.appData.isLight = false;
-        }
-    }]);
-
-    return AerialController;
-}();
-
-registerComponent('app.controllers').controller(AerialController.getName(), AerialController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
  * This is the base controller attached to the <body> tag
  */
 
@@ -263,7 +220,7 @@ var BaseController = function () {
             activeNavigationLink: 'home'
         };
 
-        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Home</span>'), href: '#/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false },
+        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-circle-thin"></i><span>Home</span>'), href: '#/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-video-camera"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false },
         //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
         { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false }];
 
@@ -316,6 +273,49 @@ var BaseController = function () {
 }();
 
 registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
+var AerialController = function () {
+    _createClass(AerialController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'AerialCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', AerialController];
+        }
+    }]);
+
+    function AerialController($rootScope) {
+        _classCallCheck(this, AerialController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(AerialController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Aerial Surveying';
+            this.$rootScope.appData.isLight = false;
+        }
+    }]);
+
+    return AerialController;
+}();
+
+registerComponent('app.controllers').controller(AerialController.getName(), AerialController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -553,7 +553,7 @@ var HomeController = function () {
 
             var resetInterval = function resetInterval() {
                 _this2.sectionInterval = _this2.$interval(function () {
-                    _this2.goToNextSection();
+                    _this2.goToNextSection(1000);
                 }, _this2.sectionChangeInterval);
             };
 
@@ -575,12 +575,12 @@ var HomeController = function () {
         }
     }, {
         key: 'goToNextSection',
-        value: function goToNextSection() {
+        value: function goToNextSection(startDelay) {
             var index = this._.indexOf(this.sections, this.currentSection) + 1;
             if (index >= this.sections.length) {
                 index = 0;
             }
-            this.goToSection(this.sections[index]);
+            this.goToSection(this.sections[index], startDelay);
         }
     }, {
         key: 'goToSection',

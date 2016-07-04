@@ -28,7 +28,7 @@ class AboutUsController {
             {
                 photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
                 name: 'Sam Low',
-                title: 'Cinematographer',
+                title: 'Director / Compositor',
                 email: 'sam@cinescape.us'
             },
             {

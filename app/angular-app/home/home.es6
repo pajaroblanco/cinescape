@@ -96,7 +96,7 @@ class HomeController {
 
         let resetInterval = () => {
             this.sectionInterval = this.$interval(() => {
-                this.goToNextSection();
+                this.goToNextSection(1000);
             }, this.sectionChangeInterval);
         };
 
@@ -118,12 +118,12 @@ class HomeController {
         }
     }
 
-    goToNextSection() {
+    goToNextSection(startDelay) {
         let index = this._.indexOf(this.sections, this.currentSection) + 1;
         if (index >= this.sections.length) {
             index = 0;
         }
-        this.goToSection(this.sections[index]);
+        this.goToSection(this.sections[index], startDelay);
     }
 
     goToSection(section, startDelay) {

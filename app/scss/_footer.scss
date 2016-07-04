@@ -47,6 +47,16 @@ html, body {height: 100%;}
       text-decoration: underline;
     }
   }
+
+  i.fa {
+    margin-right: 8px;
+
+    @include breakpoint(small only) {
+      position: absolute;
+      right: 8px;
+      margin-top: 5px;
+    }
+  }
 }
 
 /*Opera Fix*/

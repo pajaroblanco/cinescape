@@ -7,6 +7,45 @@
   color: white;
 }
 
+a.logo {
+  i {
+    background: url('images/logo-bg-no-frame-dark.svg') no-repeat center center;
+    //background-size: cover;
+    height: 75px;
+    max-width: 100%;
+    display: inline-block;
+    width: 267px;
+    transition: background 300ms;
+    //background-repeat: no-repeat;
+    //width: 100%;
+    background-size: 100% 100%;
+
+    &:hover {
+      background-color: rgb(31, 31, 31);
+    }
+  }
+}
+
+.title-bar {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .title-bar {
+    padding: 0;
+  }
+}
+
+.title-bar-title {
+  a.logo {
+    i {
+      width: 124px;
+      height: 50px;
+      top: 4px;
+      position: relative;
+    }
+  }
+}
+
 header {
   padding-top: .5rem;
   position: absolute;
@@ -24,25 +63,6 @@ header {
     @include breakpoint(large up) {
       padding-left: 3rem;
       padding-right: 3rem;
-    }
-  }
-
-  a.logo {
-    i {
-      background: url('images/logo-bg-no-frame-dark.svg') no-repeat center center;
-      //background-size: cover;
-      height: 75px;
-      max-width: 100%;
-      display: inline-block;
-      width: 267px;
-      transition: background 300ms;
-      //background-repeat: no-repeat;
-      //width: 100%;
-      background-size: 100% 100%;
-
-      &:hover {
-        background-color: rgb(31, 31, 31);
-      }
     }
   }
 
