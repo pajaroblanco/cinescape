@@ -457,11 +457,11 @@ var HomeController = function () {
     }, {
         key: 'getDependencies',
         value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', HomeController];
+            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', HomeController];
         }
     }]);
 
-    function HomeController($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location) {
+    function HomeController($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce) {
         _classCallCheck(this, HomeController);
 
         this.$http = $http;
@@ -476,14 +476,14 @@ var HomeController = function () {
         this.sections = [{
             section: 1,
             backgroundImage: 'camera.jpg',
-            slogan: 'Professional TV and Web Commercials that will give your company an edge over the competition',
+            slogan: $sce.trustAsHtml('Professional <span class="highlight">TV and Web Commercials</span> that will give your company an edge over the competition'),
             title: 'Commercial Productions',
             learnMoreText: 'Learn More About Commercial Productions',
             detailUrl: '/commercial'
         }, {
             section: 2,
             backgroundImage: 'home.jpg',
-            slogan: 'AERIAL CINEMATOGRAPHY FOR REAL ESTATE PROFESSIONALS',
+            slogan: $sce.trustAsHtml('Aerial Cinematography for <span class="highlight">Real Estate</span> Professionals'),
             title: 'Real Estate Cinematography',
             learnMoreText: 'Learn More About Real Estate Cinematography',
             detailUrl: '/real-estate'

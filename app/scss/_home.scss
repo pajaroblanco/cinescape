@@ -126,7 +126,7 @@
         display: block;
         color: $white;
         line-height: 1;
-        opacity: .3;
+        opacity: .5;
         margin-left: auto;
         margin-right: auto;
         position: absolute;
@@ -159,7 +159,8 @@
     }
 
     h1 {
-      font-size: 250%;
+      text-transform: none;
+      font-size: 200%;
       margin-top:2rem;
       margin-bottom: 2rem;
 

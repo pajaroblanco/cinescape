@@ -63,3 +63,9 @@ h1 {
     margin-right: 12px;
   }
 }
+
+.highlight {
+  color: $alert-color;// lighten($cinescape-color, 15);
+  //text-shadow: #00A000;
+  //text-decoration: underline;
+}

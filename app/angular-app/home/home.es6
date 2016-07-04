@@ -8,10 +8,10 @@ class HomeController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', HomeController];
+        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', HomeController];
     }
 
-    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location) {
+    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
@@ -25,7 +25,7 @@ class HomeController {
             {
                 section: 1,
                 backgroundImage: 'camera.jpg',
-                slogan: 'Professional TV and Web Commercials that will give your company an edge over the competition',
+                slogan: $sce.trustAsHtml('Professional <span class="highlight">TV and Web Commercials</span> that will give your company an edge over the competition'),
                 title: 'Commercial Productions',
                 learnMoreText: 'Learn More About Commercial Productions',
                 detailUrl: '/commercial'
@@ -33,7 +33,7 @@ class HomeController {
             {
                 section: 2,
                 backgroundImage: 'home.jpg',
-                slogan: 'AERIAL CINEMATOGRAPHY FOR REAL ESTATE PROFESSIONALS',
+                slogan: $sce.trustAsHtml('Aerial Cinematography for <span class="highlight">Real Estate</span> Professionals'),
                 title: 'Real Estate Cinematography',
                 learnMoreText: 'Learn More About Real Estate Cinematography',
                 detailUrl: '/real-estate'
