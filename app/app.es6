@@ -10,7 +10,7 @@ var angularApp = angular.module('app', [
 ]);
 
 angularApp.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    //$locationProvider.hashPrefix('!');
+    $locationProvider.hashPrefix('!');
 
     //Setup URL routes.
     $routeProvider.

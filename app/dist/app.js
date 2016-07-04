@@ -5,7 +5,7 @@
 var angularApp = angular.module('app', ['ngRoute', 'app.controllers', 'app.directives', 'app.services', 'angular-velocity', 'ngAnimate']);
 
 angularApp.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    //$locationProvider.hashPrefix('!');
+    $locationProvider.hashPrefix('!');
 
     //Setup URL routes.
     $routeProvider.when('/', {
@@ -191,95 +191,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * This is the base controller attached to the <body> tag
- */
-
-var BaseController = function () {
-    _createClass(BaseController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'BaseCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', BaseController];
-        }
-    }]);
-
-    function BaseController($rootScope, $scope, $location, velocity, _, $sce) {
-        _classCallCheck(this, BaseController);
-
-        this.$rootScope = $rootScope;
-        this.$location = $location;
-        this.velocity = velocity;
-        this._ = _;
-
-        this.$rootScope.appData = {
-            smallScreenHeader: 'Cinescape',
-            activeNavigationLink: 'home'
-        };
-
-        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-circle-thin"></i><span>Home</span>'), href: '#/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-video-camera"></i><span>Commercial Productions</span>'), href: '#/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Real Estate Cinematography</span>'), href: '#/real-estate', isActive: false },
-        //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#/aerial', isActive: false},
-        { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#/contact', isActive: false }];
-
-        this.init($scope);
-    }
-
-    _createClass(BaseController, [{
-        key: 'init',
-        value: function init($scope) {
-            var _this = this;
-
-            //when the user navigates to a new page, clear the page messages/errors
-            $scope.$on('$locationChangeStart', function (event) {
-                var currentPath = _this.$location.path();
-
-                _this.setLinksInactive();
-                var activeLink = _this._.find(_this.navLinks, { href: '#' + currentPath });
-                if (activeLink) {
-                    activeLink.isActive = true;
-                }
-
-                _this.scrollToTop(0);
-            });
-        }
-    }, {
-        key: 'setLinksInactive',
-        value: function setLinksInactive() {
-            this._.forEach(this.navLinks, function (link) {
-                link.isActive = false;
-            });
-        }
-    }, {
-        key: 'afterViewEnter',
-        value: function afterViewEnter() {
-            $('#view').attr('style', '');
-        }
-    }, {
-        key: 'onScrollToTopClick',
-        value: function onScrollToTopClick() {
-            this.scrollToTop(350);
-        }
-    }, {
-        key: 'scrollToTop',
-        value: function scrollToTop(duration) {
-            this.velocity($('html'), 'scroll', { duration: duration });
-        }
-    }]);
-
-    return BaseController;
-}();
-
-registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
  * Created by Brandon on 6/2/2016.
  */
 
@@ -316,6 +227,95 @@ var AerialController = function () {
 }();
 
 registerComponent('app.controllers').controller(AerialController.getName(), AerialController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * This is the base controller attached to the <body> tag
+ */
+
+var BaseController = function () {
+    _createClass(BaseController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'BaseCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', BaseController];
+        }
+    }]);
+
+    function BaseController($rootScope, $scope, $location, velocity, _, $sce) {
+        _classCallCheck(this, BaseController);
+
+        this.$rootScope = $rootScope;
+        this.$location = $location;
+        this.velocity = velocity;
+        this._ = _;
+
+        this.$rootScope.appData = {
+            smallScreenHeader: 'Cinescape',
+            activeNavigationLink: 'home'
+        };
+
+        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-circle-thin"></i><span>Home</span>'), href: '#!/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-video-camera"></i><span>Commercial Productions</span>'), href: '#!/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Real Estate Cinematography</span>'), href: '#!/real-estate', isActive: false },
+        //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#!/aerial', isActive: false},
+        { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#!/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#!/contact', isActive: false }];
+
+        this.init($scope);
+    }
+
+    _createClass(BaseController, [{
+        key: 'init',
+        value: function init($scope) {
+            var _this = this;
+
+            //when the user navigates to a new page, clear the page messages/errors
+            $scope.$on('$locationChangeStart', function (event) {
+                var currentPath = _this.$location.path();
+
+                _this.setLinksInactive();
+                var activeLink = _this._.find(_this.navLinks, { href: '#!' + currentPath });
+                if (activeLink) {
+                    activeLink.isActive = true;
+                }
+
+                _this.scrollToTop(0);
+            });
+        }
+    }, {
+        key: 'setLinksInactive',
+        value: function setLinksInactive() {
+            this._.forEach(this.navLinks, function (link) {
+                link.isActive = false;
+            });
+        }
+    }, {
+        key: 'afterViewEnter',
+        value: function afterViewEnter() {
+            $('#view').attr('style', '');
+        }
+    }, {
+        key: 'onScrollToTopClick',
+        value: function onScrollToTopClick() {
+            this.scrollToTop(350);
+        }
+    }, {
+        key: 'scrollToTop',
+        value: function scrollToTop(duration) {
+            this.velocity($('html'), 'scroll', { duration: duration });
+        }
+    }]);
+
+    return BaseController;
+}();
+
+registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -476,7 +476,7 @@ var HomeController = function () {
         this.sections = [{
             section: 1,
             backgroundImage: 'camera.jpg',
-            slogan: 'SOME OTHER SLOGAN HERE 1',
+            slogan: 'Professional TV and Web Commercials that will give your company an edge over the competition',
             title: 'Commercial Productions',
             learnMoreText: 'Learn More About Commercial Productions',
             detailUrl: '/commercial'

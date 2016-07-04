@@ -25,7 +25,7 @@ class HomeController {
             {
                 section: 1,
                 backgroundImage: 'camera.jpg',
-                slogan: 'SOME OTHER SLOGAN HERE 1',
+                slogan: 'Professional TV and Web Commercials that will give your company an edge over the competition',
                 title: 'Commercial Productions',
                 learnMoreText: 'Learn More About Commercial Productions',
                 detailUrl: '/commercial'

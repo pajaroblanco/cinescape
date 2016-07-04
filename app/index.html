@@ -8,11 +8,12 @@
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="app" class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cinescape</title>
+    <title>Cinescape Productions</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Professional TV/Web Commercials and Real Estate Cinematography located in Southern California">
     <link rel="stylesheet" href="dist/app.css">
     <!--<link rel="stylesheet" href="dist/app.css">-->
 </head>
@@ -25,7 +26,7 @@
                     <!-- off-canvas title bar for 'small' screen -->
                     <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
                         <div class="title-bar">
-                            <span class="title-bar-title"><a href="#/" class="logo" title="Cinescape Productions"><i></i></a></span>
+                            <span class="title-bar-title"><a href="#!/" class="logo" title="Cinescape Productions"><i></i></a></span>
                             <!--<button class="menu-icon" type="button" data-open="offCanvasRight"></button>-->
                         </div>
                         <div class="title-bar-right">
@@ -46,15 +47,17 @@
                     <header>
                         <div class="row full-width">
                             <div class="column large-4 medium-2">
-                                <a class="logo" href="#/" title="Cinescape Productions">
+                                <a class="logo" href="#!/" title="Cinescape Productions">
                                     <i></i>
                                 </a>
                             </div>
                             <div class="column show-for-medium large-8 medium-10">
                                 <ul class="menu align-right light">
-                                    <li ng-repeat="navLink in base.navLinks track by navLink.label">
-                                        <a ng-href="{{navLink.href}}" ng-class="{active: navLink.isActive}" ng-bind="navLink.label"></a>
-                                    </li>
+                                    <li><a href="#!/" ng-class="{active: base.navLinks[0].isActive}">Home</a></li>
+                                    <li><a href="#!/commercial" ng-class="{active: base.navLinks[1].isActive}">Commercial</a></li>
+                                    <li><a href="#!/real-estate" ng-class="{active: base.navLinks[2].isActive}">Real Estate</a></li>
+                                    <li><a href="#!/about" ng-class="{active: base.navLinks[3].isActive}">About Us</a></li>
+                                    <li><a href="#!/contact" ng-class="{active: base.navLinks[4].isActive}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
