@@ -94,15 +94,16 @@ var AboutUsController = function () {
         this.runStartAnimation = false;
 
         this.contacts = [{
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg', //'dist/images/jeremy.jpg',
+            photoUrl: 'dist/images/jeremy.jpg',
             name: 'Jeremy Ayers',
             title: 'Pilot (FAA Licensed)',
             email: 'jeremy@cinescape.us'
         }, {
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+            photoUrl: 'dist/images/sam.jpg',
             name: 'Sam Low',
             title: 'Director / Compositor',
-            email: 'sam@cinescape.us'
+            email: 'sam@cinescape.us',
+            style: { 'background-position': '50% 100%' }
         }, {
             photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
             name: 'Darren Beasley',
@@ -184,49 +185,6 @@ var AboutUsController = function () {
 }();
 
 registerComponent('app.controllers').controller(AboutUsController.getName(), AboutUsController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
-var AerialController = function () {
-    _createClass(AerialController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'AerialCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', AerialController];
-        }
-    }]);
-
-    function AerialController($rootScope) {
-        _classCallCheck(this, AerialController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(AerialController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Aerial Surveying';
-            this.$rootScope.appData.isLight = false;
-        }
-    }]);
-
-    return AerialController;
-}();
-
-registerComponent('app.controllers').controller(AerialController.getName(), AerialController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -316,6 +274,49 @@ var BaseController = function () {
 }();
 
 registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
+var AerialController = function () {
+    _createClass(AerialController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'AerialCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', AerialController];
+        }
+    }]);
+
+    function AerialController($rootScope) {
+        _classCallCheck(this, AerialController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(AerialController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Aerial Surveying';
+            this.$rootScope.appData.isLight = false;
+        }
+    }]);
+
+    return AerialController;
+}();
+
+registerComponent('app.controllers').controller(AerialController.getName(), AerialController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -675,6 +676,49 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
+var RealEstateController = function () {
+    _createClass(RealEstateController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'RealEstateCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', RealEstateController];
+        }
+    }]);
+
+    function RealEstateController($rootScope) {
+        _classCallCheck(this, RealEstateController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(RealEstateController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Real Estate Cinematography';
+            this.$rootScope.appData.isLight = false;
+        }
+    }]);
+
+    return RealEstateController;
+}();
+
+registerComponent('app.controllers').controller(RealEstateController.getName(), RealEstateController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
 var PricingController = function () {
     _createClass(PricingController, null, [{
         key: 'getName',
@@ -740,49 +784,6 @@ var PricingController = function () {
 }();
 
 registerComponent('app.controllers').controller(PricingController.getName(), PricingController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
-var RealEstateController = function () {
-    _createClass(RealEstateController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'RealEstateCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', RealEstateController];
-        }
-    }]);
-
-    function RealEstateController($rootScope) {
-        _classCallCheck(this, RealEstateController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(RealEstateController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Real Estate Cinematography';
-            this.$rootScope.appData.isLight = false;
-        }
-    }]);
-
-    return RealEstateController;
-}();
-
-registerComponent('app.controllers').controller(RealEstateController.getName(), RealEstateController.getDependencies());
 'use strict';
 
 /**

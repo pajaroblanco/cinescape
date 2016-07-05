@@ -20,16 +20,17 @@ class AboutUsController {
 
         this.contacts = [
             {
-                photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg', //'dist/images/jeremy.jpg',
+                photoUrl: 'dist/images/jeremy.jpg',
                 name: 'Jeremy Ayers',
                 title: 'Pilot (FAA Licensed)',
                 email: 'jeremy@cinescape.us'
             },
             {
-                photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+                photoUrl: 'dist/images/sam.jpg',
                 name: 'Sam Low',
                 title: 'Director / Compositor',
-                email: 'sam@cinescape.us'
+                email: 'sam@cinescape.us',
+                style: {'background-position': '50% 100%'}
             },
             {
                 photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',

@@ -20,7 +20,7 @@
         <div class="row standard-width small-up-1 medium-up-2 large-up-4 contact-cards-container">
             <div class="column" ng-repeat="contact in vm.contacts track by $index">
                 <div class="contact-card">
-                    <div class="contact-top text-center" style="background-image:url({{contact.photoUrl}})">
+                    <div class="contact-top text-center" ng-style="contact.style" style="background-image:url({{contact.photoUrl}})">
                         <span ng-bind="contact.name"></span>
                         <span ng-bind="contact.title"></span>
                     </div>
