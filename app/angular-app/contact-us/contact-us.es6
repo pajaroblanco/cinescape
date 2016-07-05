@@ -8,23 +8,25 @@ class ContactUsController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', ContactUsController];
+        return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', 'ga', '$scope', ContactUsController];
     }
 
-    constructor($http, $rootScope, $timeout, swal, velocity) {
+    constructor($http, $rootScope, $timeout, swal, velocity, ga, $scope) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.swal = swal;
         this.velocity = velocity;
         this.$timeout = $timeout;
+        this.ga = ga;
 
         this.contact = this.getEmptyContact();
         this.isSubmitting = false;
+        this.formStarted = false;
 
-        this.init();
+        this.init($scope);
     }
 
-    init() {
+    init($scope) {
         this.$rootScope.appData.smallScreenHeader = 'Contact Us';
         this.$rootScope.appData.isLight = false;
 
@@ -32,6 +34,19 @@ class ContactUsController {
             let items = $('.callout, form');
             this.velocity(items, 'transition.slideUpIn', {duration: 500, stagger: 150});
         }, 0);
+
+        $scope.$watchCollection(() => this.contact, () => {
+            if (!(this.contact.name || this.contact.email || this.contact.phone || this.contact.subject || this.contact.message)) {
+                return;
+            }
+
+            if (!this.formStarted) {
+                this.formStarted = true;
+                this.ga('send', 'event', 'contact-us', 'form-started');
+            }
+        });
+
+        this.ga('send', 'event', 'contact-us', 'form-visited');
     }
 
     getEmptyContact() {
@@ -46,6 +61,7 @@ class ContactUsController {
 
     onSubmit(contactForm) {
         if (contactForm.$valid) {
+            this.ga('send', 'event', 'contact-us', 'form-submitted');
             this.isSubmitting = true;
             this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
             this.contact = this.getEmptyContact();

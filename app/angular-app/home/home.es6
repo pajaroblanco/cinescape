@@ -8,10 +8,10 @@ class HomeController {
     }
 
     static getDependencies() {
-        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', HomeController];
+        return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', 'ga', HomeController];
     }
 
-    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce) {
+    constructor($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce, ga) {
         this.$http = $http;
         this.$rootScope = $rootScope;
         this.$timeout = $timeout;
@@ -19,13 +19,14 @@ class HomeController {
         this.$interval = $interval;
         this._ = _;
         this.$location = $location;
+        this.ga = ga;
 
         this.sectionChangeInterval = 9000;
         this.sections = [
             {
                 section: 1,
                 backgroundImage: 'camera.jpg',
-                slogan: $sce.trustAsHtml('Professional <span class="highlight">TV and Web Commercials</span> that will give your company an edge over the competition'),
+                slogan: $sce.trustAsHtml('Professional <a href="#!/commercial" class="highlight">TV and Web Commercials</a> that will give your company an edge over the competition'),
                 title: 'Commercial Productions',
                 learnMoreText: 'Learn More About Commercial Productions',
                 detailUrl: '/commercial'
@@ -33,7 +34,7 @@ class HomeController {
             {
                 section: 2,
                 backgroundImage: 'home.jpg',
-                slogan: $sce.trustAsHtml('Aerial Cinematography for <span class="highlight">Real Estate</span> Professionals'),
+                slogan: $sce.trustAsHtml('Aerial Cinematography for <a href="#!/real-estate" class="highlight">Real Estate</a> Professionals'),
                 title: 'Real Estate Cinematography',
                 learnMoreText: 'Learn More About Real Estate Cinematography',
                 detailUrl: '/real-estate'
@@ -147,7 +148,7 @@ class HomeController {
     }
 
     onLearnMore() {
-        //this.velocity($('.home-content > .row:first'), 'scroll', {duration: 1000, easing: 'easeOutExpo'});
+        this.ga('send', 'event', 'learn-more-click', this.currentSection.title);
         this.$location.path(this.currentSection.detailUrl);
     }
 }

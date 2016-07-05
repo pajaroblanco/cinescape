@@ -36,6 +36,11 @@ angular.module('app.services')
     .factory('swal', [
         function() {
             return window.swal;
+        }])
+
+    .factory('ga', [
+        function() {
+            return window.ga;
         }]);
 
 //js-logger library

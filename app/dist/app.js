@@ -71,219 +71,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
-var AboutUsController = function () {
-    _createClass(AboutUsController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'AboutCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'ScrollMagic', AboutUsController];
-        }
-    }]);
-
-    function AboutUsController($http, $rootScope, $timeout, ScrollMagic) {
-        _classCallCheck(this, AboutUsController);
-
-        this.$http = $http;
-        this.$rootScope = $rootScope;
-        this.ScrollMagic = ScrollMagic;
-        this.$timeout = $timeout;
-        this.runStartAnimation = false;
-
-        this.contacts = [{
-            photoUrl: 'dist/images/jeremy.jpg',
-            name: 'Jeremy Ayers',
-            title: 'Pilot (FAA Licensed)',
-            email: 'jeremy@cinescape.us'
-        }, {
-            photoUrl: 'dist/images/sam.jpg',
-            name: 'Sam Low',
-            title: 'Director / Compositor',
-            email: 'sam@cinescape.us',
-            style: { 'background-position': '50% 100%' }
-        }, {
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
-            name: 'Darren Beasley',
-            title: 'Cinematographer / Photographer',
-            email: 'darren@cinescape.us'
-        }, {
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
-            name: 'Brandon Ayers',
-            title: 'Cinematographer / Photographer',
-            email: 'brandon@cinescape.us'
-        }];
-
-        // $timeout(() => {
-        //     this.runStartAnimation = true;
-        // }, 0);
-
-        this.init();
-    }
-
-    _createClass(AboutUsController, [{
-        key: 'init',
-        value: function init() {
-            var _this = this;
-
-            this.$rootScope.appData.smallScreenHeader = 'About Us';
-            this.$rootScope.appData.isLight = true;
-
-            var firstContactEnter = true;
-            var firstContactLeave = true;
-
-            this.$timeout(function () {
-                var getContactCardScene = function getContactCardScene(triggerSelector) {
-                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
-                        var duration = 750;
-                        var stagger = 150;
-
-                        if (firstContactEnter) {
-                            duration = 1;
-                            stagger = 0;
-                            firstContactEnter = false;
-                        }
-
-                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
-                    }).on("leave", function (e) {
-                        var duration = 300;
-
-                        if (firstContactLeave) {
-                            duration = 0;
-                            firstContactLeave = false;
-                        }
-
-                        $(triggerSelector).velocity({ opacity: 0 }, { duration: duration, stagger: 0 });
-                    })
-                    //.addIndicators() //uncomment this to see where the scroll triggers will be
-                    .triggerHook(.75);
-                };
-
-                var getSectionScene = function getSectionScene(triggerSelector) {
-                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
-                    }).on("leave", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity({ opacity: 0 }, { duration: 300, stagger: 200 });
-                    })
-                    //.addIndicators() //uncomment this to see where the scroll triggers will be
-                    .triggerHook(.75);
-                };
-
-                var scrollMagicController = new _this.ScrollMagic.Controller();
-                scrollMagicController.addScene(getContactCardScene('.contact-card'));
-                scrollMagicController.addScene(getSectionScene('.about-hero'));
-                // scrollMagicController.addScene(getSectionScene('.philosophy'));
-                // scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
-                //scrollMagicController.addScene(getContactCardScene('#human-centered-container'));
-            }, 0);
-        }
-    }]);
-
-    return AboutUsController;
-}();
-
-registerComponent('app.controllers').controller(AboutUsController.getName(), AboutUsController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * This is the base controller attached to the <body> tag
- */
-
-var BaseController = function () {
-    _createClass(BaseController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'BaseCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', BaseController];
-        }
-    }]);
-
-    function BaseController($rootScope, $scope, $location, velocity, _, $sce) {
-        _classCallCheck(this, BaseController);
-
-        this.$rootScope = $rootScope;
-        this.$location = $location;
-        this.velocity = velocity;
-        this._ = _;
-
-        this.$rootScope.appData = {
-            smallScreenHeader: 'Cinescape',
-            activeNavigationLink: 'home'
-        };
-
-        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-circle-thin"></i><span>Home</span>'), href: '#!/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-video-camera"></i><span>Commercial Productions</span>'), href: '#!/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Real Estate Cinematography</span>'), href: '#!/real-estate', isActive: false },
-        //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#!/aerial', isActive: false},
-        { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#!/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#!/contact', isActive: false }];
-
-        this.init($scope);
-    }
-
-    _createClass(BaseController, [{
-        key: 'init',
-        value: function init($scope) {
-            var _this = this;
-
-            //when the user navigates to a new page, clear the page messages/errors
-            $scope.$on('$locationChangeStart', function (event) {
-                var currentPath = _this.$location.path();
-
-                _this.setLinksInactive();
-                var activeLink = _this._.find(_this.navLinks, { href: '#!' + currentPath });
-                if (activeLink) {
-                    activeLink.isActive = true;
-                }
-
-                _this.scrollToTop(0);
-            });
-        }
-    }, {
-        key: 'setLinksInactive',
-        value: function setLinksInactive() {
-            this._.forEach(this.navLinks, function (link) {
-                link.isActive = false;
-            });
-        }
-    }, {
-        key: 'afterViewEnter',
-        value: function afterViewEnter() {
-            $('#view').attr('style', '');
-        }
-    }, {
-        key: 'onScrollToTopClick',
-        value: function onScrollToTopClick() {
-            this.scrollToTop(350);
-        }
-    }, {
-        key: 'scrollToTop',
-        value: function scrollToTop(duration) {
-            this.velocity($('html'), 'scroll', { duration: duration });
-        }
-    }]);
-
-    return BaseController;
-}();
-
-registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
 var AerialController = function () {
     _createClass(AerialController, null, [{
         key: 'getName',
@@ -327,49 +114,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
-var CommercialController = function () {
-    _createClass(CommercialController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'CommercialCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$rootScope', CommercialController];
-        }
-    }]);
-
-    function CommercialController($rootScope) {
-        _classCallCheck(this, CommercialController);
-
-        this.$rootScope = $rootScope;
-
-        this.init();
-    }
-
-    _createClass(CommercialController, [{
-        key: 'init',
-        value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Commercial Productions';
-            this.$rootScope.appData.isLight = false;
-        }
-    }]);
-
-    return CommercialController;
-}();
-
-registerComponent('app.controllers').controller(CommercialController.getName(), CommercialController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
 var ContactUsController = function () {
     _createClass(ContactUsController, null, [{
         key: 'getName',
@@ -379,11 +123,11 @@ var ContactUsController = function () {
     }, {
         key: 'getDependencies',
         value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', ContactUsController];
+            return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', 'ga', '$scope', ContactUsController];
         }
     }]);
 
-    function ContactUsController($http, $rootScope, $timeout, swal, velocity) {
+    function ContactUsController($http, $rootScope, $timeout, swal, velocity, ga, $scope) {
         _classCallCheck(this, ContactUsController);
 
         this.$http = $http;
@@ -391,16 +135,18 @@ var ContactUsController = function () {
         this.swal = swal;
         this.velocity = velocity;
         this.$timeout = $timeout;
+        this.ga = ga;
 
         this.contact = this.getEmptyContact();
         this.isSubmitting = false;
+        this.formStarted = false;
 
-        this.init();
+        this.init($scope);
     }
 
     _createClass(ContactUsController, [{
         key: 'init',
-        value: function init() {
+        value: function init($scope) {
             var _this = this;
 
             this.$rootScope.appData.smallScreenHeader = 'Contact Us';
@@ -410,6 +156,21 @@ var ContactUsController = function () {
                 var items = $('.callout, form');
                 _this.velocity(items, 'transition.slideUpIn', { duration: 500, stagger: 150 });
             }, 0);
+
+            $scope.$watchCollection(function () {
+                return _this.contact;
+            }, function () {
+                if (!(_this.contact.name || _this.contact.email || _this.contact.phone || _this.contact.subject || _this.contact.message)) {
+                    return;
+                }
+
+                if (!_this.formStarted) {
+                    _this.formStarted = true;
+                    _this.ga('send', 'event', 'contact-us', 'form-started');
+                }
+            });
+
+            this.ga('send', 'event', 'contact-us', 'form-visited');
         }
     }, {
         key: 'getEmptyContact',
@@ -426,6 +187,7 @@ var ContactUsController = function () {
         key: 'onSubmit',
         value: function onSubmit(contactForm) {
             if (contactForm.$valid) {
+                this.ga('send', 'event', 'contact-us', 'form-submitted');
                 this.isSubmitting = true;
                 this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
                 this.contact = this.getEmptyContact();
@@ -446,6 +208,104 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
+ * This is the base controller attached to the <body> tag
+ */
+
+var BaseController = function () {
+    _createClass(BaseController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'BaseCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', '$window', BaseController];
+        }
+    }]);
+
+    function BaseController($rootScope, $scope, $location, velocity, _, $sce, $window) {
+        _classCallCheck(this, BaseController);
+
+        this.$rootScope = $rootScope;
+        this.$location = $location;
+        this.velocity = velocity;
+        this._ = _;
+        this.$window = $window;
+
+        this.$rootScope.appData = {
+            smallScreenHeader: 'Cinescape',
+            activeNavigationLink: 'home'
+        };
+
+        this.navLinks = [{ label: 'Home', smallLabel: $sce.trustAsHtml('<i class="fa fa-circle-thin"></i><span>Home</span>'), href: '#!/', isActive: false }, { label: 'Commercial', smallLabel: $sce.trustAsHtml('<i class="fa fa-video-camera"></i><span>Commercial Productions</span>'), href: '#!/commercial', isActive: false }, { label: 'Real Estate', smallLabel: $sce.trustAsHtml('<i class="fa fa-home"></i><span>Real Estate Cinematography</span>'), href: '#!/real-estate', isActive: false },
+        //{label: 'Aerial Surveying', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Aerial Surveying</span>'), href: '#!/aerial', isActive: false},
+        { label: 'About Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-user"></i><span>About Us</span>'), href: '#!/about', isActive: false }, { label: 'Contact Us', smallLabel: $sce.trustAsHtml('<i class="fa fa-phone"></i><span>Contact Us</span>'), href: '#!/contact', isActive: false }];
+
+        this.init($scope);
+    }
+
+    _createClass(BaseController, [{
+        key: 'init',
+        value: function init($scope) {
+            var _this = this;
+
+            //when the user navigates to a new page, clear the page messages/errors
+            $scope.$on('$locationChangeStart', function (event) {
+                var currentPath = _this.$location.path();
+
+                _this.setLinksInactive();
+                var activeLink = _this._.find(_this.navLinks, { href: '#!' + currentPath });
+                if (activeLink) {
+                    activeLink.isActive = true;
+                }
+
+                _this.scrollToTop(0);
+            });
+
+            //when the view changes, report to google analytics
+            $scope.$on('$viewContentLoaded', function (event) {
+                if (_this.$window.ga) {
+                    _this.$window.ga('set', 'page', _this.$location.url());
+                    _this.$window.ga('send', 'pageview');
+                }
+            });
+        }
+    }, {
+        key: 'setLinksInactive',
+        value: function setLinksInactive() {
+            this._.forEach(this.navLinks, function (link) {
+                link.isActive = false;
+            });
+        }
+    }, {
+        key: 'afterViewEnter',
+        value: function afterViewEnter() {
+            $('#view').attr('style', '');
+        }
+    }, {
+        key: 'onScrollToTopClick',
+        value: function onScrollToTopClick() {
+            this.scrollToTop(350);
+        }
+    }, {
+        key: 'scrollToTop',
+        value: function scrollToTop(duration) {
+            this.velocity($('html'), 'scroll', { duration: duration });
+        }
+    }]);
+
+    return BaseController;
+}();
+
+registerComponent('app.controllers').controller(BaseController.getName(), BaseController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
  * Created by Brandon on 6/2/2016.
  */
 
@@ -458,11 +318,11 @@ var HomeController = function () {
     }, {
         key: 'getDependencies',
         value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', HomeController];
+            return ['$http', '$rootScope', '$timeout', 'velocity', '$interval', '_', '$scope', '$location', '$sce', 'ga', HomeController];
         }
     }]);
 
-    function HomeController($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce) {
+    function HomeController($http, $rootScope, $timeout, velocity, $interval, _, $scope, $location, $sce, ga) {
         _classCallCheck(this, HomeController);
 
         this.$http = $http;
@@ -472,19 +332,20 @@ var HomeController = function () {
         this.$interval = $interval;
         this._ = _;
         this.$location = $location;
+        this.ga = ga;
 
         this.sectionChangeInterval = 9000;
         this.sections = [{
             section: 1,
             backgroundImage: 'camera.jpg',
-            slogan: $sce.trustAsHtml('Professional <span class="highlight">TV and Web Commercials</span> that will give your company an edge over the competition'),
+            slogan: $sce.trustAsHtml('Professional <a href="#!/commercial" class="highlight">TV and Web Commercials</a> that will give your company an edge over the competition'),
             title: 'Commercial Productions',
             learnMoreText: 'Learn More About Commercial Productions',
             detailUrl: '/commercial'
         }, {
             section: 2,
             backgroundImage: 'home.jpg',
-            slogan: $sce.trustAsHtml('Aerial Cinematography for <span class="highlight">Real Estate</span> Professionals'),
+            slogan: $sce.trustAsHtml('Aerial Cinematography for <a href="#!/real-estate" class="highlight">Real Estate</a> Professionals'),
             title: 'Real Estate Cinematography',
             learnMoreText: 'Learn More About Real Estate Cinematography',
             detailUrl: '/real-estate'
@@ -609,7 +470,7 @@ var HomeController = function () {
     }, {
         key: 'onLearnMore',
         value: function onLearnMore() {
-            //this.velocity($('.home-content > .row:first'), 'scroll', {duration: 1000, easing: 'easeOutExpo'});
+            this.ga('send', 'event', 'learn-more-click', this.currentSection.title);
             this.$location.path(this.currentSection.detailUrl);
         }
     }]);
@@ -628,44 +489,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
-var PortfolioController = function () {
-    _createClass(PortfolioController, null, [{
+var CommercialController = function () {
+    _createClass(CommercialController, null, [{
         key: 'getName',
         value: function getName() {
-            return 'PortfolioCtrl';
+            return 'CommercialCtrl';
         }
     }, {
         key: 'getDependencies',
         value: function getDependencies() {
-            return ['$rootScope', PortfolioController];
+            return ['$rootScope', CommercialController];
         }
     }]);
 
-    function PortfolioController($rootScope) {
-        _classCallCheck(this, PortfolioController);
+    function CommercialController($rootScope) {
+        _classCallCheck(this, CommercialController);
 
         this.$rootScope = $rootScope;
 
         this.init();
     }
 
-    _createClass(PortfolioController, [{
+    _createClass(CommercialController, [{
         key: 'init',
         value: function init() {
-            this.$rootScope.appData.smallScreenHeader = 'Portfolio';
+            this.$rootScope.appData.smallScreenHeader = 'Commercial Productions';
             this.$rootScope.appData.isLight = false;
-
-            // this.$timeout(() => {
-            //     let items = $('form');
-            //     this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
-            // }, 0);
         }
     }]);
 
-    return PortfolioController;
+    return CommercialController;
 }();
 
-registerComponent('app.controllers').controller(PortfolioController.getName(), PortfolioController.getDependencies());
+registerComponent('app.controllers').controller(CommercialController.getName(), CommercialController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -709,6 +565,130 @@ var RealEstateController = function () {
 }();
 
 registerComponent('app.controllers').controller(RealEstateController.getName(), RealEstateController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
+var AboutUsController = function () {
+    _createClass(AboutUsController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'AboutCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$http', '$rootScope', '$timeout', 'ScrollMagic', AboutUsController];
+        }
+    }]);
+
+    function AboutUsController($http, $rootScope, $timeout, ScrollMagic) {
+        _classCallCheck(this, AboutUsController);
+
+        this.$http = $http;
+        this.$rootScope = $rootScope;
+        this.ScrollMagic = ScrollMagic;
+        this.$timeout = $timeout;
+        this.runStartAnimation = false;
+
+        this.contacts = [{
+            photoUrl: 'dist/images/jeremy.jpg',
+            name: 'Jeremy Ayers',
+            title: 'Pilot (FAA Licensed)',
+            email: 'jeremy@cinescape.us'
+        }, {
+            photoUrl: 'dist/images/sam.jpg',
+            name: 'Sam Low',
+            title: 'Director / Compositor',
+            email: 'sam@cinescape.us',
+            style: { 'background-position': '50% 100%' }
+        }, {
+            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+            name: 'Darren Beasley',
+            title: 'Cinematographer / Photographer',
+            email: 'darren@cinescape.us'
+        }, {
+            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+            name: 'Brandon Ayers',
+            title: 'Cinematographer / Photographer',
+            email: 'brandon@cinescape.us'
+        }];
+
+        // $timeout(() => {
+        //     this.runStartAnimation = true;
+        // }, 0);
+
+        this.init();
+    }
+
+    _createClass(AboutUsController, [{
+        key: 'init',
+        value: function init() {
+            var _this = this;
+
+            this.$rootScope.appData.smallScreenHeader = 'About Us';
+            this.$rootScope.appData.isLight = true;
+
+            var firstContactEnter = true;
+            var firstContactLeave = true;
+
+            this.$timeout(function () {
+                var getContactCardScene = function getContactCardScene(triggerSelector) {
+                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
+                        var duration = 750;
+                        var stagger = 150;
+
+                        if (firstContactEnter) {
+                            duration = 1;
+                            stagger = 0;
+                            firstContactEnter = false;
+                        }
+
+                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
+                    }).on("leave", function (e) {
+                        var duration = 300;
+
+                        if (firstContactLeave) {
+                            duration = 0;
+                            firstContactLeave = false;
+                        }
+
+                        $(triggerSelector).velocity({ opacity: 0 }, { duration: duration, stagger: 0 });
+                    })
+                    //.addIndicators() //uncomment this to see where the scroll triggers will be
+                    .triggerHook(.75);
+                };
+
+                var getSectionScene = function getSectionScene(triggerSelector) {
+                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
+                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
+                    }).on("leave", function (e) {
+                        $(triggerSelector).find('h1,h1+p').velocity({ opacity: 0 }, { duration: 300, stagger: 200 });
+                    })
+                    //.addIndicators() //uncomment this to see where the scroll triggers will be
+                    .triggerHook(.75);
+                };
+
+                var scrollMagicController = new _this.ScrollMagic.Controller();
+                scrollMagicController.addScene(getContactCardScene('.contact-card'));
+                scrollMagicController.addScene(getSectionScene('.about-hero'));
+                // scrollMagicController.addScene(getSectionScene('.philosophy'));
+                // scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
+                //scrollMagicController.addScene(getContactCardScene('#human-centered-container'));
+            }, 0);
+        }
+    }]);
+
+    return AboutUsController;
+}();
+
+registerComponent('app.controllers').controller(AboutUsController.getName(), AboutUsController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -784,6 +764,54 @@ var PricingController = function () {
 }();
 
 registerComponent('app.controllers').controller(PricingController.getName(), PricingController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
+var PortfolioController = function () {
+    _createClass(PortfolioController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'PortfolioCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$rootScope', PortfolioController];
+        }
+    }]);
+
+    function PortfolioController($rootScope) {
+        _classCallCheck(this, PortfolioController);
+
+        this.$rootScope = $rootScope;
+
+        this.init();
+    }
+
+    _createClass(PortfolioController, [{
+        key: 'init',
+        value: function init() {
+            this.$rootScope.appData.smallScreenHeader = 'Portfolio';
+            this.$rootScope.appData.isLight = false;
+
+            // this.$timeout(() => {
+            //     let items = $('form');
+            //     this.velocity(items, 'transition.slideUpIn', {duration: 500, delay: 50});
+            // }, 0);
+        }
+    }]);
+
+    return PortfolioController;
+}();
+
+registerComponent('app.controllers').controller(PortfolioController.getName(), PortfolioController.getDependencies());
 'use strict';
 
 /**
@@ -1034,6 +1062,8 @@ angular.module('app.services')
 //sweet alert service
 .factory('swal', [function () {
     return window.swal;
+}]).factory('ga', [function () {
+    return window.ga;
 }]);
 
 //js-logger library

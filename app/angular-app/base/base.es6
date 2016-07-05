@@ -7,14 +7,15 @@ class BaseController {
     }
     
     static getDependencies() {
-        return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', BaseController];
+        return ['$rootScope', '$scope', '$location', 'velocity', '_', '$sce', '$window', BaseController];
     }
 
-    constructor($rootScope, $scope, $location, velocity, _, $sce) {
+    constructor($rootScope, $scope, $location, velocity, _, $sce, $window) {
         this.$rootScope = $rootScope;
         this.$location = $location;
         this.velocity = velocity;
         this._ = _;
+        this.$window = $window;
 
         this.$rootScope.appData = {
             smallScreenHeader: 'Cinescape',
@@ -45,6 +46,14 @@ class BaseController {
             }
 
             this.scrollToTop(0);
+        });
+
+        //when the view changes, report to google analytics
+        $scope.$on('$viewContentLoaded', event => {
+            if (this.$window.ga) {
+                this.$window.ga('set', 'page', this.$location.url());
+                this.$window.ga('send', 'pageview');
+            }
         });
     }
 
