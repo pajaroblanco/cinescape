@@ -38,4 +38,9 @@
     border-left: 7px solid $alert-color;
     background-color: $gray-bg-color;
   }
+
+  .g-recaptcha {
+    float: right;
+    margin-bottom: 8px;
+  }
 }

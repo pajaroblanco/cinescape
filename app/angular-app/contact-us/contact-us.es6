@@ -63,10 +63,18 @@ class ContactUsController {
         if (contactForm.$valid) {
             this.ga('send', 'event', 'contact-us', 'form-submitted');
             this.isSubmitting = true;
-            this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
-            this.contact = this.getEmptyContact();
-            this.contactForm.$setPristine(true);
-            this.isSubmitting = false;
+
+            console.log(grecaptcha.getResponse());
+
+            this.$http.post('/scripts/contact-us.php', {contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse()}).then(data => {
+                this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
+                this.contact = this.getEmptyContact();
+                this.contactForm.$setPristine(true);
+                this.isSubmitting = false;
+            }, () => {
+                this.isSubmitting = false;
+                this.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+            });
         }
     }
 }

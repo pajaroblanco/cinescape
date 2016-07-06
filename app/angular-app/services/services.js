@@ -43,6 +43,11 @@ angular.module('app.services')
             return window.ga;
         }]);
 
+    // .factory('grecaptcha', [
+    //     function() {
+    //         return grecaptcha;
+    //     }]);
+
 //js-logger library
 //     .factory('Logger', [
 //         function() {

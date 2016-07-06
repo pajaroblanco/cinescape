@@ -438,13 +438,23 @@ var ContactUsController = function () {
     }, {
         key: 'onSubmit',
         value: function onSubmit(contactForm) {
+            var _this2 = this;
+
             if (contactForm.$valid) {
                 this.ga('send', 'event', 'contact-us', 'form-submitted');
                 this.isSubmitting = true;
-                this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
-                this.contact = this.getEmptyContact();
-                this.contactForm.$setPristine(true);
-                this.isSubmitting = false;
+
+                console.log(grecaptcha.getResponse());
+
+                this.$http.post('/scripts/contact-us.php', { contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse() }).then(function (data) {
+                    _this2.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
+                    _this2.contact = _this2.getEmptyContact();
+                    _this2.contactForm.$setPristine(true);
+                    _this2.isSubmitting = false;
+                }, function () {
+                    _this2.isSubmitting = false;
+                    _this2.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+                });
             }
         }
     }]);
@@ -1058,6 +1068,11 @@ angular.module('app.services')
 }]).factory('ga', [function () {
     return window.ga;
 }]);
+
+// .factory('grecaptcha', [
+//     function() {
+//         return grecaptcha;
+//     }]);
 
 //js-logger library
 //     .factory('Logger', [
