@@ -617,16 +617,18 @@ var HomeController = function () {
             this.resetSectionInterval(startDelay);
             this.currentSection = section;
 
+            var sloganTransition = 'transition.slideLeftIn';
             if (this._.first(this.sections) == section) {
                 this.progressBarStyle = { 'transform-origin': '0' };
             } else {
                 this.progressBarStyle = { 'transform-origin': '100%' };
+                sloganTransition = 'transition.slideRightIn';
             }
 
             if (this.initialAnimationComplete) {
                 var slogan = $('.hero-text').find('h1');
                 this.velocity(slogan, 'stop');
-                this.velocity(slogan, 'transition.slideRightIn', { duration: 1500 });
+                this.velocity(slogan, sloganTransition, { duration: 1500 });
             }
 
             //section.translateStyle = {'transform': 'translateY(0) scale(1)'};
