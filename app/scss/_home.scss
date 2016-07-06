@@ -122,6 +122,29 @@
     .title-wrapper {
       height: 55px;
 
+      .separator {
+        width: 2px;
+        height: 65%;
+        background-color: $cinescape-color;
+        margin-left: 16px;
+        margin-right: 16px;
+        display: inline-block;
+        position: relative;
+        top: 8px;
+        opacity: 0.75;
+
+        @include breakpoint(small only) {
+          height: 50%;
+          margin-left: 5px;
+          margin-right: 5px;
+          width: 1px;
+        }
+
+        &:last-of-type {
+          display: none;
+        }
+      }
+
       a {
         display: inline;
         color: $white;
@@ -133,29 +156,19 @@
         width: 100%;
         transition: all 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
         margin-bottom: 0;
-        padding-left: 12px;
-        margin-left: 12px;
+        //padding-left: 12px;
+        //margin-left: 12px;
         //border-left: solid 1px white;
-        font-size: 200%;
+        font-size: 180%;
 
-        &:before {
-          content: "";
-          width: 1px;
-          height: 88%;
-          position: absolute;
-          background-color: $white;
-          left: 0;
+        @include breakpoint(small only) {
+          font-size: 90%;
         }
 
-        &:first-of-type {
-          margin-left: 0;
-          padding-left: 0;
-          //border-left: none;
-
-          &:before {
-            display: none;
-          }
-        }
+        //&:first-of-type {
+        //  margin-left: 0;
+        //  padding-left: 0;
+        //}
 
         //& > em {
         //  font-size: 200%;

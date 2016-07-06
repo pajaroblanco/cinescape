@@ -617,6 +617,12 @@ var HomeController = function () {
             this.resetSectionInterval(startDelay);
             this.currentSection = section;
 
+            if (this._.first(this.sections) == section) {
+                this.progressBarStyle = { 'transform-origin': '0' };
+            } else {
+                this.progressBarStyle = { 'transform-origin': '100%' };
+            }
+
             if (this.initialAnimationComplete) {
                 var slogan = $('.hero-text').find('h1');
                 this.velocity(slogan, 'stop');
