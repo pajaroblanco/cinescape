@@ -12,7 +12,8 @@
 
 .contact-card {
   //width: 324px;
-  display: none;
+  display: block;
+  opacity: 0.001;
   height: 365px;
   max-width: 370px;
   margin-bottom: 3rem;

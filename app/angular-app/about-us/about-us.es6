@@ -66,24 +66,10 @@ class AboutUsController {
                     .on("enter", function (e) {
                         let duration = 750;
                         let stagger = 150;
-
-                        if (firstContactEnter) {
-                            duration = 1;
-                            stagger = 0;
-                            firstContactEnter = false;
-                        }
-
                         $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
-
                     })
                     .on("leave", function (e) {
                         let duration = 300;
-
-                        if (firstContactLeave) {
-                            duration = 0;
-                            firstContactLeave = false;
-                        }
-
                         $(triggerSelector).velocity({opacity: 0}, { duration: duration, stagger: 0 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be

@@ -139,22 +139,9 @@ var AboutUsController = function () {
                     return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
                         var duration = 750;
                         var stagger = 150;
-
-                        if (firstContactEnter) {
-                            duration = 1;
-                            stagger = 0;
-                            firstContactEnter = false;
-                        }
-
                         $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
                     }).on("leave", function (e) {
                         var duration = 300;
-
-                        if (firstContactLeave) {
-                            duration = 0;
-                            firstContactLeave = false;
-                        }
-
                         $(triggerSelector).velocity({ opacity: 0 }, { duration: duration, stagger: 0 });
                     })
                     //.addIndicators() //uncomment this to see where the scroll triggers will be
