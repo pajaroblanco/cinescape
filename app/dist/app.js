@@ -537,7 +537,7 @@ var HomeController = function () {
             }, 0);
 
             this.resetSectionInterval();
-            this.goToSection(this.currentSection);
+            this.goToSection(this.currentSection, 2000);
 
             $scope.$on('$destroy', function () {
                 _this.$timeout.cancel(_this.sectionStartDelayTimeout);
