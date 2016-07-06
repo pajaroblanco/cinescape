@@ -137,14 +137,14 @@ class HomeController {
             this.velocity(slogan, 'transition.slideRightIn', {duration: 1500});
         }
 
-        section.translateStyle = {'transform': 'translateY(0) scale(1)'};
+        //section.translateStyle = {'transform': 'translateY(0) scale(1)'};
 
-        let translateY = 40;
-        let topPadding = 35;
-        let inactiveSections = this._.filter(this.sections, s => s != section);
-        this._.forEach(inactiveSections, (inactiveSection, index) => {
-            inactiveSection.translateStyle = {'transform': 'translateY(-' + ((translateY * (index+1)) + topPadding) + 'px) scale(.5)'};
-        });
+        // let translateY = 40;
+        // let topPadding = 35;
+        // let inactiveSections = this._.filter(this.sections, s => s != section);
+        // this._.forEach(inactiveSections, (inactiveSection, index) => {
+        //     inactiveSection.translateStyle = {'transform': 'translateY(-' + ((translateY * (index+1)) + topPadding) + 'px) scale(.5)'};
+        // });
     }
 
     onLearnMore() {

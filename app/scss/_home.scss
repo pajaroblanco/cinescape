@@ -123,20 +123,43 @@
       height: 55px;
 
       a {
-        display: block;
+        display: inline;
         color: $white;
         line-height: 1;
         opacity: .5;
-        margin-left: auto;
-        margin-right: auto;
-        position: absolute;
+        //margin-left: auto;
+        //margin-right: auto;
+        position: relative;
         width: 100%;
         transition: all 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
         margin-bottom: 0;
+        padding-left: 12px;
+        margin-left: 12px;
+        //border-left: solid 1px white;
+        font-size: 200%;
 
-        & > em {
-          font-size: 200%;
+        &:before {
+          content: "";
+          width: 1px;
+          height: 88%;
+          position: absolute;
+          background-color: $white;
+          left: 0;
         }
+
+        &:first-of-type {
+          margin-left: 0;
+          padding-left: 0;
+          //border-left: none;
+
+          &:before {
+            display: none;
+          }
+        }
+
+        //& > em {
+        //  font-size: 200%;
+        //}
 
         &:hover {
           opacity: 1;
