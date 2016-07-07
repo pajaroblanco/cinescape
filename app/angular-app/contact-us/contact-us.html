@@ -54,8 +54,14 @@
             </div>
 
             <div class="row">
-                <div class="small-12 columns">
-                    <div class="g-recaptcha" data-sitekey="6LdLdiQTAAAAAKKPFi8gEFpWEnZwgOKkkzLRbsbZ"></div>
+                <div class="small-12 columns text-right">
+                    <div id="recaptcha" class="g-recaptcha"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 columns text-right">
+                    <span class="form-error" ng-style="vm.recaptchaErrorStyle">Are you a robot?</span>
                 </div>
             </div>
 

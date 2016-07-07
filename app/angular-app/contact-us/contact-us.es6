@@ -22,6 +22,7 @@ class ContactUsController {
         this.contact = this.getEmptyContact();
         this.isSubmitting = false;
         this.formStarted = false;
+        this.recaptchaSiteKey = '6LdLdiQTAAAAAKKPFi8gEFpWEnZwgOKkkzLRbsbZ';
 
         this.init($scope);
     }
@@ -34,6 +35,16 @@ class ContactUsController {
             let items = $('.callout, form');
             this.velocity(items, 'transition.slideUpIn', {duration: 500, stagger: 150});
         }, 0);
+
+        let initRecaptcha = () => {
+            if (recaptchaLoaded) {
+                grecaptcha.render('recaptcha', {"sitekey": this.recaptchaSiteKey});
+            }
+            else {
+                this.$timeout(() => {initRecaptcha()}, 500);
+            }
+        };
+        this.$timeout(() => {initRecaptcha()}, 500);
 
         $scope.$watchCollection(() => this.contact, () => {
             if (!(this.contact.name || this.contact.email || this.contact.phone || this.contact.subject || this.contact.message)) {
@@ -61,19 +72,46 @@ class ContactUsController {
 
     onSubmit(contactForm) {
         if (contactForm.$valid) {
+            this.recaptchaErrorStyle = null;
+            if (!grecaptcha.getResponse()) {
+                this.recaptchaErrorStyle = {'display': 'block', 'margin-top': '0'};
+                return;
+            }
+
             this.ga('send', 'event', 'contact-us', 'form-submitted');
             this.isSubmitting = true;
 
-            console.log(grecaptcha.getResponse());
+            this.$http.post('/scripts/contact-us.php', {contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse()}).then(response => {
+                $.ajax({
+                    url: "https://formspree.io/you@email.com",
+                    method: "POST",
+                    data: {message: "hello!"},
+                    dataType: "json"
+                });
 
-            this.$http.post('/scripts/contact-us.php', {contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse()}).then(data => {
-                this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
-                this.contact = this.getEmptyContact();
-                this.contactForm.$setPristine(true);
+                this.contact['_replyto'] = this.contact.email;
+                this.contact['_subject'] = this.contact.subject;
+
+                this.$http.post('https://formspree.io/bmayers15@gmail.com', this.contact).then(response => {
+                    this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
+                    this.contact = this.getEmptyContact();
+                    this.contactForm.$setPristine(true);
+                    this.isSubmitting = false;
+                    grecaptcha.reset();
+                }, () => {
+                    this.isSubmitting = false;
+                    this.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+                });
+
+            }, (response) => {
                 this.isSubmitting = false;
-            }, () => {
-                this.isSubmitting = false;
-                this.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+
+                if (response.status == 400) {
+                    this.swal('Are you a robot?', 'Please check the "I\'m not a robot" checkbox', 'warning');
+                }
+                else {
+                    this.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+                }
             });
         }
     }
