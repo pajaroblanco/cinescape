@@ -18,28 +18,32 @@ if (isset($request['g-recaptcha-response']))
 if (!$captcha)
     die("not ok");
 
-$opts = array('http' =>
+$opts = array('https' =>
     array(
         'method'  => 'POST',
-        'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => null
+        //'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => ''
     )
 );
 
 $context  = stream_context_create($opts);
 
 // handling the captcha and checking if it's ok
-$response = json_decode(file_get_contents("http://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret_key."&response=".$captcha."&remoteip=".$_SERVER["REMOTE_ADDR"], false, $context), true);
+//$response = file_get_contents("http://www.google.com");
+
+//var_dump($response);
+
+$response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$recaptcha_secret_key."&response=".$captcha."&remoteip=".$_SERVER["REMOTE_ADDR"], false, $context);
 
 var_dump($response);
 
 // if the captcha is cleared with google, send the mail and echo ok.
-if ($response["success"] != false) {
-    // send the actual mail
-    //@mail($email_to, $subject, $finalMsg);
-
-    // the echo goes back to the ajax, so the user can know if everything is ok
-    echo "ok";
-} else {
-    echo "not ok";
-}
+//if ($response["success"] != false) {
+//    // send the actual mail
+//    //@mail($email_to, $subject, $finalMsg);
+//
+//    // the echo goes back to the ajax, so the user can know if everything is ok
+//    echo "ok";
+//} else {
+//    echo "not ok";
+//}
