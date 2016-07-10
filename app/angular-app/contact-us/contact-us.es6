@@ -23,6 +23,7 @@ class ContactUsController {
         this.isSubmitting = false;
         this.formStarted = false;
         this.recaptchaSiteKey = '6LdLdiQTAAAAAKKPFi8gEFpWEnZwgOKkkzLRbsbZ';
+        this.submitEmail = 'info@cinescape.us';
 
         this.init($scope);
     }
@@ -37,7 +38,7 @@ class ContactUsController {
         }, 0);
 
         let initRecaptcha = () => {
-            if (recaptchaLoaded) {
+            if (grecaptcha) {
                 grecaptcha.render('recaptcha', {"sitekey": this.recaptchaSiteKey});
             }
             else {
@@ -92,7 +93,7 @@ class ContactUsController {
                 this.contact['_replyto'] = this.contact.email;
                 this.contact['_subject'] = this.contact.subject;
 
-                this.$http.post('https://formspree.io/bmayers15@gmail.com', this.contact).then(response => {
+                this.$http.post('https://formspree.io/' + this.submitEmail, this.contact).then(response => {
                     this.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
                     this.contact = this.getEmptyContact();
                     this.contactForm.$setPristine(true);

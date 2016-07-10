@@ -71,6 +71,117 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
+var AboutUsController = function () {
+    _createClass(AboutUsController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'AboutCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$http', '$rootScope', '$timeout', 'ScrollMagic', AboutUsController];
+        }
+    }]);
+
+    function AboutUsController($http, $rootScope, $timeout, ScrollMagic) {
+        _classCallCheck(this, AboutUsController);
+
+        this.$http = $http;
+        this.$rootScope = $rootScope;
+        this.ScrollMagic = ScrollMagic;
+        this.$timeout = $timeout;
+        this.runStartAnimation = false;
+
+        this.contacts = [{
+            photoUrl: 'dist/images/jeremy.jpg',
+            name: 'Jeremy Ayers',
+            title: 'Pilot (FAA Licensed)',
+            email: 'jeremy@cinescape.us'
+        }, {
+            photoUrl: 'dist/images/sam.jpg',
+            name: 'Sam Low',
+            title: 'Director / Compositor',
+            email: 'sam@cinescape.us',
+            style: { 'background-position': '50% 100%' }
+        }, {
+            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+            name: 'Darren Beasley',
+            title: 'Cinematographer / Photographer',
+            email: 'darren@cinescape.us'
+        }, {
+            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+            name: 'Brandon Ayers',
+            title: 'Cinematographer / Photographer',
+            email: 'brandon@cinescape.us'
+        }];
+
+        // $timeout(() => {
+        //     this.runStartAnimation = true;
+        // }, 0);
+
+        this.init();
+    }
+
+    _createClass(AboutUsController, [{
+        key: 'init',
+        value: function init() {
+            var _this = this;
+
+            this.$rootScope.appData.smallScreenHeader = 'About Us';
+            this.$rootScope.appData.isLight = true;
+
+            var firstContactEnter = true;
+            var firstContactLeave = true;
+
+            this.$timeout(function () {
+                var getContactCardScene = function getContactCardScene(triggerSelector) {
+                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
+                        var duration = 750;
+                        var stagger = 150;
+                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
+                    }).on("leave", function (e) {
+                        var duration = 300;
+                        $(triggerSelector).velocity({ opacity: 0 }, { duration: duration, stagger: 0 });
+                    })
+                    //.addIndicators() //uncomment this to see where the scroll triggers will be
+                    .triggerHook(.75);
+                };
+
+                var getSectionScene = function getSectionScene(triggerSelector) {
+                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
+                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
+                    }).on("leave", function (e) {
+                        $(triggerSelector).find('h1,h1+p').velocity({ opacity: 0 }, { duration: 300, stagger: 200 });
+                    })
+                    //.addIndicators() //uncomment this to see where the scroll triggers will be
+                    .triggerHook(.75);
+                };
+
+                var scrollMagicController = new _this.ScrollMagic.Controller();
+                scrollMagicController.addScene(getContactCardScene('.contact-card'));
+                scrollMagicController.addScene(getSectionScene('.about-hero'));
+                // scrollMagicController.addScene(getSectionScene('.philosophy'));
+                // scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
+                //scrollMagicController.addScene(getContactCardScene('#human-centered-container'));
+            }, 0);
+        }
+    }]);
+
+    return AboutUsController;
+}();
+
+registerComponent('app.controllers').controller(AboutUsController.getName(), AboutUsController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016.
+ */
+
 var AerialController = function () {
     _createClass(AerialController, null, [{
         key: 'getName',
@@ -245,6 +356,153 @@ var CommercialController = function () {
 }();
 
 registerComponent('app.controllers').controller(CommercialController.getName(), CommercialController.getDependencies());
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Created by Brandon on 6/2/2016. 
+ */
+
+var ContactUsController = function () {
+    _createClass(ContactUsController, null, [{
+        key: 'getName',
+        value: function getName() {
+            return 'ContactCtrl';
+        }
+    }, {
+        key: 'getDependencies',
+        value: function getDependencies() {
+            return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', 'ga', '$scope', ContactUsController];
+        }
+    }]);
+
+    function ContactUsController($http, $rootScope, $timeout, swal, velocity, ga, $scope) {
+        _classCallCheck(this, ContactUsController);
+
+        this.$http = $http;
+        this.$rootScope = $rootScope;
+        this.swal = swal;
+        this.velocity = velocity;
+        this.$timeout = $timeout;
+        this.ga = ga;
+
+        this.contact = this.getEmptyContact();
+        this.isSubmitting = false;
+        this.formStarted = false;
+        this.recaptchaSiteKey = '6LdLdiQTAAAAAKKPFi8gEFpWEnZwgOKkkzLRbsbZ';
+        this.submitEmail = 'info@cinescape.us';
+
+        this.init($scope);
+    }
+
+    _createClass(ContactUsController, [{
+        key: 'init',
+        value: function init($scope) {
+            var _this = this;
+
+            this.$rootScope.appData.smallScreenHeader = 'Contact Us';
+            this.$rootScope.appData.isLight = false;
+
+            this.$timeout(function () {
+                var items = $('.callout, form');
+                _this.velocity(items, 'transition.slideUpIn', { duration: 500, stagger: 150 });
+            }, 0);
+
+            var initRecaptcha = function initRecaptcha() {
+                if (grecaptcha) {
+                    grecaptcha.render('recaptcha', { "sitekey": _this.recaptchaSiteKey });
+                } else {
+                    _this.$timeout(function () {
+                        initRecaptcha();
+                    }, 500);
+                }
+            };
+            this.$timeout(function () {
+                initRecaptcha();
+            }, 500);
+
+            $scope.$watchCollection(function () {
+                return _this.contact;
+            }, function () {
+                if (!(_this.contact.name || _this.contact.email || _this.contact.phone || _this.contact.subject || _this.contact.message)) {
+                    return;
+                }
+
+                if (!_this.formStarted) {
+                    _this.formStarted = true;
+                    _this.ga('send', 'event', 'contact-us', 'form-started');
+                }
+            });
+
+            this.ga('send', 'event', 'contact-us', 'form-visited');
+        }
+    }, {
+        key: 'getEmptyContact',
+        value: function getEmptyContact() {
+            return {
+                name: '',
+                email: '',
+                phone: '',
+                subject: '',
+                message: ''
+            };
+        }
+    }, {
+        key: 'onSubmit',
+        value: function onSubmit(contactForm) {
+            var _this2 = this;
+
+            if (contactForm.$valid) {
+                this.recaptchaErrorStyle = null;
+                if (!grecaptcha.getResponse()) {
+                    this.recaptchaErrorStyle = { 'display': 'block', 'margin-top': '0' };
+                    return;
+                }
+
+                this.ga('send', 'event', 'contact-us', 'form-submitted');
+                this.isSubmitting = true;
+
+                this.$http.post('/scripts/contact-us.php', { contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse() }).then(function (response) {
+                    $.ajax({
+                        url: "https://formspree.io/you@email.com",
+                        method: "POST",
+                        data: { message: "hello!" },
+                        dataType: "json"
+                    });
+
+                    _this2.contact['_replyto'] = _this2.contact.email;
+                    _this2.contact['_subject'] = _this2.contact.subject;
+
+                    _this2.$http.post('https://formspree.io/' + _this2.submitEmail, _this2.contact).then(function (response) {
+                        _this2.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
+                        _this2.contact = _this2.getEmptyContact();
+                        _this2.contactForm.$setPristine(true);
+                        _this2.isSubmitting = false;
+                        grecaptcha.reset();
+                    }, function () {
+                        _this2.isSubmitting = false;
+                        _this2.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+                    });
+                }, function (response) {
+                    _this2.isSubmitting = false;
+
+                    if (response.status == 400) {
+                        _this2.swal('Are you a robot?', 'Please check the "I\'m not a robot" checkbox', 'warning');
+                    } else {
+                        _this2.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
+                    }
+                });
+            }
+        }
+    }]);
+
+    return ContactUsController;
+}();
+
+registerComponent('app.controllers').controller(ContactUsController.getName(), ContactUsController.getDependencies());
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -489,152 +747,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by Brandon on 6/2/2016.
  */
 
-var ContactUsController = function () {
-    _createClass(ContactUsController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'ContactCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'swal', 'velocity', 'ga', '$scope', ContactUsController];
-        }
-    }]);
-
-    function ContactUsController($http, $rootScope, $timeout, swal, velocity, ga, $scope) {
-        _classCallCheck(this, ContactUsController);
-
-        this.$http = $http;
-        this.$rootScope = $rootScope;
-        this.swal = swal;
-        this.velocity = velocity;
-        this.$timeout = $timeout;
-        this.ga = ga;
-
-        this.contact = this.getEmptyContact();
-        this.isSubmitting = false;
-        this.formStarted = false;
-        this.recaptchaSiteKey = '6LdLdiQTAAAAAKKPFi8gEFpWEnZwgOKkkzLRbsbZ';
-
-        this.init($scope);
-    }
-
-    _createClass(ContactUsController, [{
-        key: 'init',
-        value: function init($scope) {
-            var _this = this;
-
-            this.$rootScope.appData.smallScreenHeader = 'Contact Us';
-            this.$rootScope.appData.isLight = false;
-
-            this.$timeout(function () {
-                var items = $('.callout, form');
-                _this.velocity(items, 'transition.slideUpIn', { duration: 500, stagger: 150 });
-            }, 0);
-
-            var initRecaptcha = function initRecaptcha() {
-                if (recaptchaLoaded) {
-                    grecaptcha.render('recaptcha', { "sitekey": _this.recaptchaSiteKey });
-                } else {
-                    _this.$timeout(function () {
-                        initRecaptcha();
-                    }, 500);
-                }
-            };
-            this.$timeout(function () {
-                initRecaptcha();
-            }, 500);
-
-            $scope.$watchCollection(function () {
-                return _this.contact;
-            }, function () {
-                if (!(_this.contact.name || _this.contact.email || _this.contact.phone || _this.contact.subject || _this.contact.message)) {
-                    return;
-                }
-
-                if (!_this.formStarted) {
-                    _this.formStarted = true;
-                    _this.ga('send', 'event', 'contact-us', 'form-started');
-                }
-            });
-
-            this.ga('send', 'event', 'contact-us', 'form-visited');
-        }
-    }, {
-        key: 'getEmptyContact',
-        value: function getEmptyContact() {
-            return {
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                message: ''
-            };
-        }
-    }, {
-        key: 'onSubmit',
-        value: function onSubmit(contactForm) {
-            var _this2 = this;
-
-            if (contactForm.$valid) {
-                this.recaptchaErrorStyle = null;
-                if (!grecaptcha.getResponse()) {
-                    this.recaptchaErrorStyle = { 'display': 'block', 'margin-top': '0' };
-                    return;
-                }
-
-                this.ga('send', 'event', 'contact-us', 'form-submitted');
-                this.isSubmitting = true;
-
-                this.$http.post('/scripts/contact-us.php', { contact: this.contact, 'g-recaptcha-response': grecaptcha.getResponse() }).then(function (response) {
-                    $.ajax({
-                        url: "https://formspree.io/you@email.com",
-                        method: "POST",
-                        data: { message: "hello!" },
-                        dataType: "json"
-                    });
-
-                    _this2.contact['_replyto'] = _this2.contact.email;
-                    _this2.contact['_subject'] = _this2.contact.subject;
-
-                    _this2.$http.post('https://formspree.io/bmayers15@gmail.com', _this2.contact).then(function (response) {
-                        _this2.swal('Success', 'Thank you for contacting us, someone will respond to you shortly.', 'success');
-                        _this2.contact = _this2.getEmptyContact();
-                        _this2.contactForm.$setPristine(true);
-                        _this2.isSubmitting = false;
-                        grecaptcha.reset();
-                    }, function () {
-                        _this2.isSubmitting = false;
-                        _this2.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
-                    });
-                }, function (response) {
-                    _this2.isSubmitting = false;
-
-                    if (response.status == 400) {
-                        _this2.swal('Are you a robot?', 'Please check the "I\'m not a robot" checkbox', 'warning');
-                    } else {
-                        _this2.swal('Error', "Oops, we're sorry but something went wrong when trying to submit the form", 'error');
-                    }
-                });
-            }
-        }
-    }]);
-
-    return ContactUsController;
-}();
-
-registerComponent('app.controllers').controller(ContactUsController.getName(), ContactUsController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
 var PricingController = function () {
     _createClass(PricingController, null, [{
         key: 'getName',
@@ -743,117 +855,6 @@ var RealEstateController = function () {
 }();
 
 registerComponent('app.controllers').controller(RealEstateController.getName(), RealEstateController.getDependencies());
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Created by Brandon on 6/2/2016.
- */
-
-var AboutUsController = function () {
-    _createClass(AboutUsController, null, [{
-        key: 'getName',
-        value: function getName() {
-            return 'AboutCtrl';
-        }
-    }, {
-        key: 'getDependencies',
-        value: function getDependencies() {
-            return ['$http', '$rootScope', '$timeout', 'ScrollMagic', AboutUsController];
-        }
-    }]);
-
-    function AboutUsController($http, $rootScope, $timeout, ScrollMagic) {
-        _classCallCheck(this, AboutUsController);
-
-        this.$http = $http;
-        this.$rootScope = $rootScope;
-        this.ScrollMagic = ScrollMagic;
-        this.$timeout = $timeout;
-        this.runStartAnimation = false;
-
-        this.contacts = [{
-            photoUrl: 'dist/images/jeremy.jpg',
-            name: 'Jeremy Ayers',
-            title: 'Pilot (FAA Licensed)',
-            email: 'jeremy@cinescape.us'
-        }, {
-            photoUrl: 'dist/images/sam.jpg',
-            name: 'Sam Low',
-            title: 'Director / Compositor',
-            email: 'sam@cinescape.us',
-            style: { 'background-position': '50% 100%' }
-        }, {
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
-            name: 'Darren Beasley',
-            title: 'Cinematographer / Photographer',
-            email: 'darren@cinescape.us'
-        }, {
-            photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
-            name: 'Brandon Ayers',
-            title: 'Cinematographer / Photographer',
-            email: 'brandon@cinescape.us'
-        }];
-
-        // $timeout(() => {
-        //     this.runStartAnimation = true;
-        // }, 0);
-
-        this.init();
-    }
-
-    _createClass(AboutUsController, [{
-        key: 'init',
-        value: function init() {
-            var _this = this;
-
-            this.$rootScope.appData.smallScreenHeader = 'About Us';
-            this.$rootScope.appData.isLight = true;
-
-            var firstContactEnter = true;
-            var firstContactLeave = true;
-
-            this.$timeout(function () {
-                var getContactCardScene = function getContactCardScene(triggerSelector) {
-                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
-                        var duration = 750;
-                        var stagger = 150;
-                        $(triggerSelector).velocity("transition.slideLeftIn", { duration: duration, stagger: stagger });
-                    }).on("leave", function (e) {
-                        var duration = 300;
-                        $(triggerSelector).velocity({ opacity: 0 }, { duration: duration, stagger: 0 });
-                    })
-                    //.addIndicators() //uncomment this to see where the scroll triggers will be
-                    .triggerHook(.75);
-                };
-
-                var getSectionScene = function getSectionScene(triggerSelector) {
-                    return new _this.ScrollMagic.Scene({ triggerElement: triggerSelector }).on("enter", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity("transition.slideLeftIn", { duration: 1000, stagger: 200 });
-                    }).on("leave", function (e) {
-                        $(triggerSelector).find('h1,h1+p').velocity({ opacity: 0 }, { duration: 300, stagger: 200 });
-                    })
-                    //.addIndicators() //uncomment this to see where the scroll triggers will be
-                    .triggerHook(.75);
-                };
-
-                var scrollMagicController = new _this.ScrollMagic.Controller();
-                scrollMagicController.addScene(getContactCardScene('.contact-card'));
-                scrollMagicController.addScene(getSectionScene('.about-hero'));
-                // scrollMagicController.addScene(getSectionScene('.philosophy'));
-                // scrollMagicController.addScene(getContactCardScene('#bright-bold-container'));
-                //scrollMagicController.addScene(getContactCardScene('#human-centered-container'));
-            }, 0);
-        }
-    }]);
-
-    return AboutUsController;
-}();
-
-registerComponent('app.controllers').controller(AboutUsController.getName(), AboutUsController.getDependencies());
 'use strict';
 
 /**
