@@ -33,13 +33,14 @@ class AboutUsController {
                 style: {'background-position': '50% 100%'}
             },
             {
-                photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+                photoUrl: 'dist/images/darren.jpg',
                 name: 'Darren Beasley',
                 title: 'Cinematographer / Photographer',
-                email: 'darren@cinescape.us'
+                email: 'darren@cinescape.us',
+                style: {'background-position': '50% 40%'}
             },
             {
-                photoUrl: 'https://0.s3.envato.com/files/183626516/Image/Image_Profile.jpg',
+                photoUrl: 'dist/images/brandon.jpg',
                 name: 'Brandon Ayers',
                 title: 'Cinematographer / Photographer',
                 email: 'brandon@cinescape.us'
